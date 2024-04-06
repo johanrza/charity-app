@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\AdminPanel\AdminController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\VendorPanel\VendorController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminPanel\AdminController;
+use App\Http\Controllers\VendorPanel\VendorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +32,13 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-Route::middleware('auth')->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'index']);
-    Route::get('/vendor/dashboard', [VendorController::class, 'index']);
-});
+// Route::middleware(['auth', 'role:admin'])->group(function () {
+//     Route::get('/admin/dashboard', [AdminController::class, 'index']);
+// });
+
+// Route::middleware(['auth', 'role:vendor'])->group(function () {
+//     Route::get('/vendor/dashboard', [VendorController::class, 'index']);
+// });
+
+Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware(['auth', 'role:admin']); // passes data with value 'admin' to RoleMiddleware
+Route::get('/vendor/dashboard', [VendorController::class, 'index'])->middleware(['auth', 'role:vendor']); // passes data with value 'vendor' to RoleMiddleware
