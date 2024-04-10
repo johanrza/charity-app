@@ -12,6 +12,11 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    /** 
+     * Sets which fields can not be mass assigned
+     */
+    protected $guarded = [];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -24,7 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes that should be hidden for serialization to JSON or array.
      *
      * @var array<int, string>
      */
