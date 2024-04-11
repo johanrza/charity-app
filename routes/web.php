@@ -40,8 +40,5 @@ require __DIR__ . '/auth.php';
 //     Route::get('/vendor/dashboard', [VendorController::class, 'index']);
 // });
 
-// TODO:
-// [ ] add middleware 'verified' in next commit
-// [ ] make a middleware group 'auth' and 'verified'
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware(['auth', 'role:admin'])->name('admin.dashboard'); // passes data with value 'admin' to RoleMiddleware
-Route::get('/vendor/dashboard', [VendorController::class, 'index'])->middleware(['auth', 'role:vendor'])->name('vendor.dashboard'); // passes data with value 'vendor' to RoleMiddleware
+Route::get('/vendor/dashboard', [VendorController::class, 'index'])->middleware(['auth', 'verified', 'role:vendor'])->name('vendor.dashboard'); // passes data with value 'vendor' to RoleMiddleware
