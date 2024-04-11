@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerPanel\CustomerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminPanel\AdminController;
@@ -20,9 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [CustomerController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,14 +30,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
-
-// Route::middleware(['auth', 'role:admin'])->group(function () {
-//     Route::get('/admin/dashboard', [AdminController::class, 'index']);
-// });
-
-// Route::middleware(['auth', 'role:vendor'])->group(function () {
-//     Route::get('/vendor/dashboard', [VendorController::class, 'index']);
-// });
 
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware(['auth', 'role:admin'])->name('admin.dashboard'); // passes data with value 'admin' to RoleMiddleware
 Route::get('/vendor/dashboard', [VendorController::class, 'index'])->middleware(['auth', 'verified', 'role:vendor'])->name('vendor.dashboard'); // passes data with value 'vendor' to RoleMiddleware
