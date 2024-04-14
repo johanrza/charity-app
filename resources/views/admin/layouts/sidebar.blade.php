@@ -1,18 +1,21 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">Admin Panel</a>
+            <a href="{{ route('admin.dashboard') }}">Admin Panel</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html"></a>
+            <a href="{{ route('admin.dashboard') }}"></a>
         </div>
+
+        {{-- // TODO: make a dynamic class 'active' --}}
 
         <ul class="sidebar-menu">
 
-            <li class="active"><a class="nav-link" href="index.html"><i class="fas fa-hand-point-right"></i>
+            <li @if (Request::is('admin/dashboard')) class="active" @endif><a class="nav-link"
+                    href="{{ route('admin.dashboard') }}"><i class="fas fa-hand-point-right"></i>
                     <span>Dashboard</span></a></li>
 
-            <li class="nav-item dropdown active">
+            <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Dropdown
                         Items</span></a>
                 <ul class="dropdown-menu">

@@ -31,5 +31,11 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware(['auth', 'role:admin'])->name('admin.dashboard'); // passes data with value 'admin' to RoleMiddleware
-Route::get('/vendor/dashboard', [VendorController::class, 'index'])->middleware(['auth', 'verified', 'role:vendor'])->name('vendor.dashboard'); // passes data with value 'vendor' to RoleMiddleware
+Route::middleware(['auth', 'verified', 'role:admin'])->group(function () { // 'role:admin' --> passes data with value 'admin' to RoleMiddleware 
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/profile', [AdminController::class, 'editProfile'])->name('admin.profile');
+});
+
+Route::middleware(['auth', 'verified', 'role:vendor'])->group(function () { // 'role:vendor' --> passes data with value 'vendor' to RoleMiddleware 
+    Route::get('/vendor/dashboard', [VendorController::class, 'index'])->name('vendor.dashboard');
+});
