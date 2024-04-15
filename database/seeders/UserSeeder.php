@@ -18,21 +18,27 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Admin',
                 'email' => 'admin@gmail.com',
-                'password' => Hash::make('1234'),
-                'roles' => 'admin'
+                'email_verified_at' => date("Y-m-d H:i:s"),
+                'password' => Hash::make('12345678'),
+                'roles' => 'admin',
+                'status' => 'active',
             ],
             [
                 'name' => 'Vendor',
                 'email' => 'vendor@gmail.com',
-                'password' => Hash::make('1234'),
-                'roles' => 'vendor'
+                'email_verified_at' => date("Y-m-d H:i:s"),
+                'password' => Hash::make('12345678'),
+                'roles' => 'vendor',
+                'status' => 'active',
             ],
             [
                 'name' => 'Customer',
                 'email' => 'customer@gmail.com',
-                'password' => Hash::make('1234'),
-                'roles' => 'customer'
-            ]
+                'email_verified_at' => date("Y-m-d H:i:s"),
+                'password' => Hash::make('12345678'),
+                'roles' => 'customer',
+                'status' => 'active',
+            ],
         ]);
     }
 }
