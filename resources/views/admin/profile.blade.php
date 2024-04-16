@@ -15,8 +15,14 @@
                         <form action="" method="post">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <img src="{{ asset('storage/uploads/user.jpg') }}" alt=""
-                                        class="profile-photo w_100_p">
+                                    @if (Auth::user()->photo === null)
+                                        <img alt="Profile Picture" src="{{ asset('storage/uploads/default.png') }}"
+                                            class="profile-photo w_100_p">
+                                    @else
+                                        <img alt="Profile Picture"
+                                            src="{{ asset('storage/uploads/' . Auth::user()->photo) }}"
+                                            class="profile-photo w_100_p">
+                                    @endif
                                     <input type="file" class="mt_10" name="photo">
                                 </div>
                                 <div class="col-md-9">
