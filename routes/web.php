@@ -33,7 +33,8 @@ require __DIR__ . '/auth.php';
 
 Route::middleware(['auth', 'verified', 'role:admin'])->prefix('admin')->group(function () { // 'role:admin' --> passes data with value 'admin' to RoleMiddleware 
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('/profile', [AdminController::class, 'editProfile'])->name('admin.profile');
+    Route::get('/profile', [AdminController::class, 'create'])->name('admin.profile');
+    Route::post('/profile/update', [AdminController::class, 'update'])->name('admin.profile.update');
 });
 
 Route::middleware(['auth', 'verified', 'role:vendor'])->prefix('vendor')->group(function () { // 'role:vendor' --> passes data with value 'vendor' to RoleMiddleware 
