@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
@@ -32,6 +33,15 @@ class AdminController extends Controller
             'name' => ['required'],
             'email' => ['required', 'email', Rule::unique('users')->ignore($user->id)],
         ]);
+
+        if ($request->password != '' || $request->confirm_password != '') {
+            $request->validate([
+                'password' => ['required', 'min:8'],
+                'confirm_password' => ['required', 'same:password'],
+            ]);
+
+            $user->password = Hash::make('password');
+        }
 
         $user->update([
             'name' => $request->name,
