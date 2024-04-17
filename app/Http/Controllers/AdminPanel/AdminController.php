@@ -8,7 +8,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class AdminController extends Controller
@@ -30,23 +32,30 @@ class AdminController extends Controller
 
         // TODO: add custom error messages
         $request->validate([
-            'name' => ['required'],
-            'email' => ['required', 'email', Rule::unique('users')->ignore($user->id)],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', Rule::unique('users')->ignore($user->id)],
+            'password' => ['nullable', 'min:8', 'confirmed'],
+            'photo' => ['nullable', 'file', 'image', 'mimes:jpg,bmp,png'],
         ]);
 
-        if ($request->password != '' || $request->confirm_password != '') {
-            $request->validate([
-                'password' => ['required', 'min:8'],
-                'confirm_password' => ['required', 'same:password'],
-            ]);
-
-            $user->password = Hash::make('password');
-        }
-
-        $user->update([
+        $updateData = [
             'name' => $request->name,
             'email' => $request->email,
-        ]);
+        ];
+
+        if ($request->has('password')) {
+            $updateData['password'] = Hash::make($request->password);
+        }
+
+        if ($request->hasFile('photo')) {
+            $photoPath = $request->file('photo')->store('uploads', 'public');
+            if (!empty($user->photo)) {
+                Storage::disk('public')->delete($user->photo);
+            }
+            $updateData['photo'] = $photoPath;
+        }
+
+        $user->update($updateData);
 
         return redirect()->back()->with('success', 'Profile berhasil di update!');
     }

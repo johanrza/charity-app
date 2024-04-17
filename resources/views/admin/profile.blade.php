@@ -20,8 +20,7 @@
                                         <img alt="Profile Picture" src="{{ asset('storage/uploads/default.png') }}"
                                             class="profile-photo w_100_p">
                                     @else
-                                        <img alt="Profile Picture"
-                                            src="{{ asset('storage/uploads/' . Auth::user()->photo) }}"
+                                        <img alt="Profile Picture" src="{{ asset('storage/' . Auth::user()->photo) }}"
                                             class="profile-photo w_100_p">
                                     @endif
                                     <input type="file" class="mt_10" name="photo">
@@ -45,7 +44,7 @@
                                     </div>
                                     <div class="mb-4">
                                         <label class="form-label">Confirm Password</label>
-                                        <input type="password" class="form-control" name="confirm_password">
+                                        <input type="password" class="form-control" name="password_confirmation">
                                     </div>
                                     <div class="mb-4">
                                         <label class="form-label"></label>

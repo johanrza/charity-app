@@ -19,7 +19,7 @@
                         <img alt="image" src="{{ asset('storage/uploads/default.png') }}"
                             class="rounded-circle-custom">
                     @else
-                        <img alt="image" src="{{ asset('storage/uploads/' . Auth::user()->photo) }}"
+                        <img alt="image" src="{{ asset('storage/' . Auth::user()->photo) }}"
                             class="rounded-circle-custom">
                     @endif
                 </a>
