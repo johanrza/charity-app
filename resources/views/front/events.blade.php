@@ -33,10 +33,10 @@
                                 <div class="date-time">
                                     <i class="fas fa-calendar-alt"></i>
                                     @php
-                                        $date = \Carbon\Carbon::parse($item->date)->format('j M, Y');
-                                        $time = \Carbon\Carbon::parse($item->time)->format('h:i A');
+                                        $date = \Carbon\Carbon::parse($item->date)->format('j M Y');
+                                        $time = \Carbon\Carbon::parse($item->time)->format('H:i');
                                     @endphp
-                                    {{ $date }}, {{ $time }}
+                                    {{ $date }}, {{ $time }} WIB
                                 </div>
                                 <div class="short-des">
                                     <p>

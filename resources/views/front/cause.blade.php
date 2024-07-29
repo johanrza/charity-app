@@ -48,8 +48,8 @@
                             </style>
                         </div>
                         <div class="lbl mb_20">
-                            <div class="goal">Target: Rp. {{ $cause->goal }}</div>
-                            <div class="raised">Terkumpul: Rp. {{ $cause->raised }}</div>
+                            <div class="goal">Target: @rupiah($cause->goal)</div>
+                            <div class="raised">Terkumpul: @rupiah($cause->raised)</div>
                         </div>
                         {!! $cause->description !!}
                     </div>
@@ -137,7 +137,7 @@
                                 <h3>Berapa yang ingin Anda donasi?</h3>
                                 <div class="donate-box">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text">Rp.</span>
+                                        <span class="input-group-text">Rp</span>
                                         <input id="donation-amount" name="price" type="text" class="form-control ps-2"
                                             required>
                                     </div>
@@ -184,15 +184,15 @@
                                 <table class="table table-bordered">
                                     <tr>
                                         <td><b>Target</b></td>
-                                        <td>Rp{{ $cause->goal }}</td>
+                                        <td>@rupiah($cause->goal)</td>
                                     </tr>
                                     <tr>
                                         <td><b>Terkumpul</b></td>
-                                        <td>Rp{{ $cause->raised }}</td>
+                                        <td>@rupiah($cause->raised)</td>
                                     </tr>
                                     <tr>
                                         <td><b>Kurang</b></td>
-                                        <td>Rp{{ $cause->goal - $cause->raised }}</td>
+                                        <td>@rupiah($cause->goal - $cause->raised)</td>
                                     </tr>
                                     <tr>
                                         <td><b>Persentase</b></td>

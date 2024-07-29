@@ -41,10 +41,10 @@
                                                         {{ $item->name }}
                                                     </td>
                                                     <td>
-                                                        Rp{{ $item->goal }}
+                                                        @rupiah($item->goal)
                                                     </td>
                                                     <td>
-                                                        Rp{{ $item->raised }}
+                                                        @rupiah($item->raised)
                                                     </td>
                                                     <td>
                                                         {{ $item->is_featured }}

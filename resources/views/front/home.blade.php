@@ -99,9 +99,7 @@
                                         <a href="{{ route('cause', $item->slug) }}">{{ $item->name }}</a>
                                     </h2>
                                     <div class="lbl mb_10">
-                                        <div class="goal">Target:
-                                            {{ \NumberFormatter::create('id_ID', \NumberFormatter::CURRENCY)->formatCurrency($item->goal, 'IDR') }}
-                                        </div>
+                                        <div class="goal">Target: @rupiah($item->goal)</div>
                                     </div>
                                     <div class="short-des">
                                         <p>
@@ -130,9 +128,7 @@
                                         </style>
                                     </div>
                                     <div class="lbl mb_20">
-                                        <div class="raised">Terkumpul:
-                                            {{ \NumberFormatter::create('id_ID', \NumberFormatter::CURRENCY)->formatCurrency($item->raised, 'IDR') }}
-                                        </div>
+                                        <div class="raised">Terkumpul: @rupiah($item->raised)</div>
                                     </div>
                                     <div class="button-style-2">
                                         <a href="{{ route('cause', $item->slug) }}">Donasi Sekarang <i

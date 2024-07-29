@@ -57,9 +57,9 @@
                                                 @endphp
                                                 {{ $event->name }}
                                             </td>
-                                            <td class="text-center">Rp{{ $ticket_data->unit_price }}</td>
+                                            <td class="text-center">@rupiah($ticket_data->unit_price)</td>
                                             <td class="text-center">{{ $ticket_data->number_of_tickets }}</td>
-                                            <td class="text-right">Rp{{ $ticket_data->total_price }}</td>
+                                            <td class="text-right">@rupiah($ticket_data->total_price)</td>
                                             <td>{{ $ticket_data->payment_method }}</td>
                                         </tr>
                                     </table>
@@ -69,7 +69,7 @@
                                         <div class="invoice-detail-item">
                                             <div class="invoice-detail-name">Total</div>
                                             <div class="invoice-detail-value invoice-detail-value-lg">
-                                                Rp{{ $ticket_data->total_price }}</div>
+                                                @rupiah($ticket_data->total_price)</div>
                                         </div>
                                     </div>
                                 </div>

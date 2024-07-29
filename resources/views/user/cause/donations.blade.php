@@ -50,7 +50,7 @@
                                                         @endphp
                                                     </td>
                                                     <td>
-                                                        Rp{{ $item->price }}
+                                                        @rupiah($item->price)
                                                     </td>
                                                     <td style="width:140px;">
                                                         <a href="{{ route('user_cause_donation_invoice', $item->id) }}"
@@ -66,7 +66,7 @@
                                                     <h5>Total Donasi: </h5>
                                                 </td>
                                                 <td>
-                                                    <h5>Rp{{ $total_price }}</h5>
+                                                    <h5>@rupiah($total_price)</h5>
                                                 </td>
                                                 <td></td>
                                             </tr>

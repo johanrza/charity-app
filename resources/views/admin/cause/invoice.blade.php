@@ -68,7 +68,7 @@
                                                 @endphp
                                                 {{ $cause->name }}
                                             </td>
-                                            <td class="text-center">Rp{{ $donation_data->price }}</td>
+                                            <td class="text-center">@rupiah($donation_data->price)</td>
                                             <td class="text-center">{{ $donation_data->payment_method }}</td>
                                         </tr>
                                     </table>
@@ -78,7 +78,7 @@
                                         <div class="invoice-detail-item">
                                             <div class="invoice-detail-name">Total</div>
                                             <div class="invoice-detail-value invoice-detail-value-lg">
-                                                Rp{{ $donation_data->price }}</div>
+                                                @rupiah($donation_data->price)</div>
                                         </div>
                                     </div>
                                 </div>

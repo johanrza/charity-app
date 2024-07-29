@@ -59,8 +59,8 @@
                                     </style>
                                 </div>
                                 <div class="lbl mb_20">
-                                    <div class="goal">Target: Rp{{ $item->goal }}</div>
-                                    <div class="raised">Terkumpul: Rp{{ $item->raised }}</div>
+                                    <div class="goal">Target: @rupiah($item->goal)</div>
+                                    <div class="raised">Terkumpul: @rupiah($item->raised)</div>
                                 </div>
                                 <div class="button-style-2">
                                     <a href="{{ route('cause', $item->slug) }}">Donasi Sekarang <i

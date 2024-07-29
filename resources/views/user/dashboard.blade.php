@@ -32,7 +32,7 @@
                                 <h4>Total Harga Tiket Event</h4>
                             </div>
                             <div class="card-body">
-                                Rp{{ $total_ticket_price }}
+                                @rupiah($total_ticket_price)
                             </div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                                 <h4>Total Donasi</h4>
                             </div>
                             <div class="card-body">
-                                Rp{{ $total_donation_price }}
+                                @rupiah($total_donation_price)
                             </div>
                         </div>
                     </div>

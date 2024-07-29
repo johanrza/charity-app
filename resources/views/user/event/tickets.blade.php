@@ -59,13 +59,13 @@
                                                         @endphp
                                                     </td>
                                                     <td>
-                                                        Rp{{ $item->unit_price }}
+                                                        @rupiah($item->unit_price)
                                                     </td>
                                                     <td>
                                                         {{ $item->number_of_tickets }}
                                                     </td>
                                                     <td>
-                                                        Rp{{ $item->total_price }}
+                                                        @rupiah($item->total_price)
                                                     </td>
                                                     <td style="width:140px;">
                                                         <a href="{{ route('user_event_ticket_invoice', $item->id) }}"
@@ -85,7 +85,7 @@
                                                     <h5>{{ $total_tickets }}</h5>
                                                 </td>
                                                 <td>
-                                                    <h5>Rp{{ $total_price }}</h5>
+                                                    <h5>@rupiah($total_price)</h5>
                                                 </td>
                                                 <td></td>
                                             </tr>

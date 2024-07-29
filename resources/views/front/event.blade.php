@@ -129,7 +129,7 @@
                                     @if ($event->price != 0)
                                         <tr>
                                             <td><b>Harga Tiket</b></td>
-                                            <td class="price">Rp{{ $event->price }}</td>
+                                            <td class="price">@rupiah($event->price)</td>
                                         </tr>
                                     @endif
 
