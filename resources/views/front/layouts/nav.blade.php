@@ -25,7 +25,7 @@
                             <a href="{{ route('causes') }}" class="nav-link">Donasi</a>
                         </li>
                         <li class="nav-item {{ Request::is('events') ? 'active' : '' }}">
-                            <a href="{{ route('events') }}" class="nav-link">Events</a>
+                            <a href="{{ route('events') }}" class="nav-link">Acara</a>
                         </li>
                         <li class="nav-item {{ Request::is('volunteers') ? 'active' : '' }}">
                             <a href="{{ route('volunteers') }}" class="nav-link">Relawan</a>
@@ -44,7 +44,7 @@
                             <a href="{{ route('faqs') }}" class="nav-link">FAQ</a>
                         </li>
                         <li class="nav-item {{ Request::is('blog') ? 'active' : '' }}">
-                            <a href="{{ route('blog') }}" class="nav-link">Blog</a>
+                            <a href="{{ route('blog') }}" class="nav-link">Artikel</a>
                         </li>
                         <li class="nav-item {{ Request::is('contact') ? 'active' : '' }}">
                             <a href="{{ route('contact') }}" class="nav-link">Kontak</a>

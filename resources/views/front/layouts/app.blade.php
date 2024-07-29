@@ -191,7 +191,7 @@
                     <div class="item pb_50">
                         <h2 class="heading">Newsletter</h2>
                         <p>
-                            Untuk mengetahui berita terbaru dari kami,
+                            Untuk mengetahui artikel terbaru dari kami,
                             silahkan subscribe email di bawah ini:
                         </p>
                         <form action="{{ route('subscriber_submit') }}" method="post">

@@ -483,7 +483,7 @@ CREATE TABLE `home_page_items` (
 --
 
 INSERT INTO `home_page_items` (`id`, `cause_heading`, `cause_subheading`, `cause_status`, `feature_background`, `feature_status`, `event_heading`, `event_subheading`, `event_status`, `testimonial_heading`, `testimonial_background`, `testimonial_status`, `blog_heading`, `blog_subheading`, `blog_status`, `created_at`, `updated_at`) VALUES
-(1, 'Donasi Unggulan', 'Bantulah mereka yang membutuhkan dengan Berdonasi.', 'Show', 'feature_background_1704118837.jpg', 'Show', 'Event Mendatang', 'Anda dapat mengatur acara dan membantu kami dalam menciptakan pengalaman yang tak terlupakan.', 'Show', 'Apa kata mereka?', 'testimonial_background_1704118881.jpg', 'Hide', 'Berita Terbaru', 'Lihat berita dan pembaruan terkini dari postingan blog kami.', 'Show', NULL, '2024-07-14 15:28:16');
+(1, 'Donasi Unggulan', 'Bantulah mereka yang membutuhkan dengan Berdonasi.', 'Show', 'feature_background_1704118837.jpg', 'Show', 'Event Mendatang', 'Anda dapat mengatur acara dan membantu kami dalam menciptakan pengalaman yang tak terlupakan.', 'Show', 'Apa kata mereka?', 'testimonial_background_1704118881.jpg', 'Hide', 'Artikel Terbaru', 'Lihat artikel dan pembaruan terkini dari postingan blog kami.', 'Show', NULL, '2024-07-14 15:28:16');
 
 -- --------------------------------------------------------
 

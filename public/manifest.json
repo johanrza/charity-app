@@ -66,9 +66,9 @@
             ]
         },
         {
-            "name": "Lihat Berita",
-            "short_name": "Berita",
-            "description": "Pergi ke Halaman Berita",
+            "name": "Lihat Artikel",
+            "short_name": "Artikel",
+            "description": "Pergi ke Halaman Artikel",
             "url": "/news",
             "icons": [
                 {
