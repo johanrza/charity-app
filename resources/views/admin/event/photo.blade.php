@@ -4,7 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header d-flex justify-content-between">
-                <h1>Foto Event ({{ $event_single->name }})</h1>
+                <h1>Foto Acara ({{ $event_single->name }})</h1>
                 <div>
                     <a href="{{ route('admin_event_index') }}" class="btn btn-primary"><i class="fas fa-table"></i> Lihat
                         Semua</a>

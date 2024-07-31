@@ -113,7 +113,7 @@
                         <ul class="useful-links">
                             <li><a href="{{ route('home') }}"><i class="fas fa-angle-right"></i> Beranda</a></li>
                             <li><a href="{{ route('causes') }}"><i class="fas fa-angle-right"></i> Donasi</a></li>
-                            <li><a href="{{ route('events') }}"><i class="fas fa-angle-right"></i> Events</a></li>
+                            <li><a href="{{ route('events') }}"><i class="fas fa-angle-right"></i> Acara</a></li>
                             <li><a href="{{ route('volunteers') }}"><i class="fas fa-angle-right"></i> Relawan</a>
                             </li>
                             <li><a href="{{ route('blog') }}"><i class="fas fa-angle-right"></i> Blog</a></li>

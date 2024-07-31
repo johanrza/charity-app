@@ -14,7 +14,7 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Total Tiket Event yang Dibeli</h4>
+                                <h4>Total Tiket Acara yang Dibeli</h4>
                             </div>
                             <div class="card-body">
                                 {{ $total_ticket }}
@@ -29,7 +29,7 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Total Harga Tiket Event</h4>
+                                <h4>Total Harga Tiket Acara</h4>
                             </div>
                             <div class="card-body">
                                 @rupiah($total_ticket_price)

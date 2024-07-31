@@ -9,7 +9,7 @@
                     <div class="breadcrumb-container">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('events') }}">Events</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('events') }}">Acara</a></li>
                             <li class="breadcrumb-item active">{{ $event->name }}</li>
                         </ol>
                     </div>

@@ -4,7 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header d-flex justify-content-between">
-                <h1>Tiket Event</h1>
+                <h1>Tiket Acara</h1>
             </div>
             <div class="section-body">
                 <div class="row">

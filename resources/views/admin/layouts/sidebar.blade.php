@@ -27,7 +27,7 @@
             </li>
             <li class="{{ Request::is('admin/event/*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin_event_index') }}">
-                    <i class="fas fa-hand-point-right"></i><span>Events</span>
+                    <i class="fas fa-hand-point-right"></i><span>Acara</span>
                 </a>
             </li>
             <li class="{{ Request::is('admin/cause/*') ? 'active' : '' }}">
@@ -39,7 +39,7 @@
             <!-- Subscriber Dropdown -->
             <li class="nav-item dropdown{{ Request::is('admin/subscriber/*') ? 'active' : '' }}">
                 <a href="#" class="nav-link dropdown-toggle">
-                    <i class="fas fa-hand-point-right"></i><span>Subscriber</span>
+                    <i class="fas fa-hand-point-right"></i><span>Subscribers</span>
                 </a>
                 <ul class="main-dropdown dropdown-menu">
                     <li class="{{ Request::is('admin/subscriber/index') ? 'active' : '' }}">

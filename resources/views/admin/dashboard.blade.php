@@ -29,7 +29,7 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Total Events</h4>
+                                <h4>Total Acara</h4>
                             </div>
                             <div class="card-body">
                                 {{ $total_events }}
