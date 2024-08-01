@@ -7,7 +7,7 @@
                 <h1>Acara</h1>
                 <div>
                     <a href="{{ route('admin_event_create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah
-                        Event</a>
+                        Acara</a>
                 </div>
             </div>
             <div class="section-body">
@@ -42,8 +42,8 @@
                                                         {{ $item->name }}
                                                     </td>
                                                     <td>
-                                                        {{ $item->date }} <br>
-                                                        {{ $item->time }}
+                                                        @dateIndoNumber($item->date) <br>
+                                                        @timeIndoComplete($item->time)
                                                     </td>
                                                     <td>
                                                         {{ $item->price }}

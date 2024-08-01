@@ -40,7 +40,7 @@
                                     <div class="col-md-6" style="text-align:right;">
                                         <address>
                                             <strong>Tanggal Invoice</strong><br>
-                                            {{ $donation_data->created_at->format('d M Y') }}<br><br>
+                                            @dateIndoComplete($donation_data->created_at)<br><br>
                                         </address>
                                     </div>
                                 </div>

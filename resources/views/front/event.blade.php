@@ -120,7 +120,7 @@
                             <div class="text-danger"><b>Event Telah Selesai!</b></div>
                         @endif
 
-                        <h2 class="mt_30">Informasi Event</h2>
+                        <h2 class="mt_30">Informasi Acara</h2>
                         <div class="summary">
                             <div class="table-responsive">
                                 <table class="table table-bordered">
@@ -147,11 +147,11 @@
                                     </tr>
                                     <tr>
                                         <td><b>Tanggal</b></td>
-                                        <td>{{ $event->date }}</td>
+                                        <td>@dateIndoComplete($event->date)</td>
                                     </tr>
                                     <tr>
                                         <td><b>Waktu</b></td>
-                                        <td>{{ $event->time }}</td>
+                                        <td>@timeIndoComplete($event->time)</td>
                                     </tr>
 
 
@@ -244,7 +244,7 @@
                         @endif
 
                         @if ($event->map != null)
-                            <h2 class="mt_30">Peta Lokasi Event</h2>
+                            <h2 class="mt_30">Peta Lokasi Acara</h2>
                             <div class="location-map">
                                 {!! $event->map !!}
                             </div>

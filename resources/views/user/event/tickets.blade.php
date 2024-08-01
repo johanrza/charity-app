@@ -16,7 +16,7 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Nama Event</th>
+                                                <th>Nama Acara</th>
                                                 <th>Id Pembayaran</th>
                                                 <th>Harga Satuan</th>
                                                 <th>Jumlah Tiket</th>

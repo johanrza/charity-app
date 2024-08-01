@@ -13,7 +13,7 @@
             Login sebagai: {{ Auth::guard('admin')->user()->name }}
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+            <a id="dropdown-profile" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 @if (Auth::guard('admin')->user()->photo != null)
                     <img src="{{ asset('uploads/' . Auth::guard('admin')->user()->photo) }}" alt=""
@@ -31,3 +31,8 @@
         </li>
     </ul>
 </nav>
+<script>
+    $('#dropdown-profile').on('click', function() {
+        $('.dropdown-menu.dropdown-menu-end').toggleClass('d-block');
+    });
+</script>

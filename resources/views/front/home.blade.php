@@ -219,11 +219,12 @@
                                     </h2>
                                     <div class="date-time">
                                         <i class="fas fa-calendar-alt"></i>
-                                        @php
+                                        {{-- @php
                                             $date = \Carbon\Carbon::parse($item->date)->format('j M, Y');
                                             $time = \Carbon\Carbon::parse($item->time)->format('h:i A');
-                                        @endphp
-                                        {{ $date }}, {{ $time }}
+                                        @endphp --}}
+                                        {{-- {{ $date }}, {{ $time }} --}}
+                                        @dateIndoComplete($item->date), @timeIndoComplete($item->time)
                                     </div>
                                     <div class="short-des">
                                         <p>

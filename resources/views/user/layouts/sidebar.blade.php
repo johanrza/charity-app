@@ -15,7 +15,7 @@
 
             <li class="{{ Request::is('user/event/tickets') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('user_event_tickets') }}"><i class="fas fa-hand-point-right"></i> <span>Tiket
-                        Event</span></a></li>
+                        Acara</span></a></li>
 
             <li class="{{ Request::is('user/cause/donations') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('user_cause_donations') }}"><i class="fas fa-hand-point-right"></i> <span>Riwayat

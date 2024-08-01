@@ -32,11 +32,12 @@
                                 </h2>
                                 <div class="date-time">
                                     <i class="fas fa-calendar-alt"></i>
-                                    @php
+                                    {{-- @php
                                         $date = \Carbon\Carbon::parse($item->date)->format('j M Y');
                                         $time = \Carbon\Carbon::parse($item->time)->format('H:i');
                                     @endphp
-                                    {{ $date }}, {{ $time }} WIB
+                                    {{ $date }}, {{ $time }} WIB --}}
+                                    @dateIndoComplete($item->date), @timeIndoComplete($item->time) WIB
                                 </div>
                                 <div class="short-des">
                                     <p>

@@ -23,5 +23,17 @@ class BladeDirectiveServiceProvider extends ServiceProvider
         Blade::directive('rupiah', function ($expression) {
             return "<?= 'Rp' . number_format($expression, 0, ',', '.'); ?>";
         });
+
+        Blade::directive('dateIndoComplete', function ($expression) {
+            return "<?= \Carbon\Carbon::parse($expression)->translatedFormat('d F Y')?>";
+        });
+
+        Blade::directive('timeIndoComplete', function ($expression) {
+            return "<?= \Carbon\Carbon::parse($expression)->translatedFormat('H:i')?>";
+        });
+        
+        Blade::directive('dateIndoNumber', function ($expression) {
+            return "<?= \Carbon\Carbon::parse($expression)->translatedFormat('d-m-Y') ?>";
+        });
     }
 }

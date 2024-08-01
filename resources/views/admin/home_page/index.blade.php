@@ -28,7 +28,7 @@
 
                                             <button class="nav-link" id="i3-tab" data-bs-toggle="tab"
                                                 data-bs-target="#i3" type="button" role="tab" aria-controls="i3"
-                                                aria-selected="false">Event</button>
+                                                aria-selected="false">Acara</button>
 
                                             <button class="nav-link" id="i4-tab" data-bs-toggle="tab"
                                                 data-bs-target="#i4" type="button" role="tab" aria-controls="i4"

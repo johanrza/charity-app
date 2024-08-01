@@ -4,7 +4,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header d-flex justify-content-between">
-                <h1>Edit Event</h1>
+                <h1>Edit Acara</h1>
                 <div>
                     <a href="{{ route('admin_event_index') }}" class="btn btn-primary"><i class="fas fa-table"></i> Lihat
                         Semua</a>

@@ -1,14 +1,3 @@
-<!-- CSS untuk dropdown submenu -->
-<style>
-    .dropdown-menu {
-        display: none;
-    }
-
-    .dropdown-menu.show {
-        display: block;
-    }
-</style>
-
 <!-- HTML untuk sidebar -->
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
@@ -37,8 +26,8 @@
             </li>
 
             <!-- Subscriber Dropdown -->
-            <li class="nav-item dropdown{{ Request::is('admin/subscriber/*') ? 'active' : '' }}">
-                <a href="#" class="nav-link dropdown-toggle">
+            <li class="nav-item dropdown {{ Request::is('admin/subscriber/*') ? 'active' : '' }}">
+                <a href="#" class="nav-link dropdown-sidebar dropdown-toggle">
                     <i class="fas fa-hand-point-right"></i><span>Subscribers</span>
                 </a>
                 <ul class="main-dropdown dropdown-menu">
@@ -57,10 +46,10 @@
 
             <!-- Manajemen Konten Dropdown -->
             <li class="nav-item dropdown {{ Request::is('admin/*') && !Request::is('admin/dashboard') && !Request::is('admin/event/*') && !Request::is('admin/cause/*') && !Request::is('admin/subscriber/*') ? 'active' : '' }}">
-                <a href="#" class="nav-link dropdown-toggle">
+                <a href="#" class="nav-link dropdown-sidebar dropdown-toggle">
                     <i class="fas fa-hand-point-right"></i><span>Manajemen Konten</span>
                 </a>
-                <ul class="main-dropdown dropdown-menu">
+                <ul class="main-dropdown dropdown-menu pb-5">
                     <li class="{{ Request::is('admin/settings/*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('admin_settings_index') }}">
                             <i class="fas fa-angle-right"></i> Settings
@@ -108,7 +97,7 @@
                     </li>
                     <!-- Galeri Foto Dropdown -->
                     <li class="nav-item dropdown {{ Request::is('admin/photo-category/*') || Request::is('admin/photo/*') ? 'active' : '' }}">
-                        <a href="#" class="nav-link dropdown-toggle">
+                        <a href="#" class="nav-link dropdown-sidebar dropdown-toggle">
                             <i class="fas fa-angle-right"></i><span>Galeri Foto</span>
                         </a>
                         <ul class="dropdown-submenu dropdown-menu">
@@ -126,7 +115,7 @@
                     </li>
                     <!-- Galeri Video Dropdown -->
                     <li class="nav-item dropdown {{ Request::is('admin/video-category/*') || Request::is('admin/video/*') ? 'active' : '' }}">
-                        <a href="#" class="nav-link dropdown-toggle">
+                        <a href="#" class="nav-link dropdown-sidebar dropdown-toggle">
                             <i class="fas fa-angle-right"></i><span>Galeri Video</span>
                         </a>
                         <ul class="dropdown-submenu dropdown-menu">
@@ -144,7 +133,7 @@
                     </li>
                     <!-- Blog Dropdown -->
                     <li class="nav-item dropdown {{ Request::is('admin/post-category/*') || Request::is('admin/post/*') || Request::is('admin/comments') || Request::is('admin/replies') ? 'active' : '' }}">
-                        <a href="#" class="nav-link dropdown-toggle">
+                        <a href="#" class="nav-link dropdown-sidebar dropdown-toggle">
                             <i class="fas fa-angle-right"></i><span>Artikel</span>
                         </a>
                         <ul class="dropdown-submenu dropdown-menu">
@@ -175,7 +164,7 @@
                             <i class="fas fa-angle-right"></i> Terms Page
                         </a>
                     </li>
-                    <li class="{{ Request::is('admin/other-pages/privacy') ? 'active' : '' }} pb-5">
+                    <li class="{{ Request::is('admin/other-pages/privacy') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('admin_privacy_page') }}">
                             <i class="fas fa-angle-right"></i> Privacy Page
                         </a>
@@ -188,7 +177,7 @@
 <script>
     $(document).ready(function() {
         // Menangani klik pada menu dropdown utama
-        $('.nav-link.dropdown-toggle').on('click', function(e) {
+        $('.nav-link.dropdown-sidebar').on('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             const submenu = $(this).next('.dropdown-menu');

@@ -43,7 +43,7 @@
                                     <table class="table table-striped table-hover table-md">
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama Event</th>
+                                            <th>Nama Acara</th>
                                             <th class="text-center">Harga</th>
                                             <th class="text-center">Qty</th>
                                             <th class="text-right">Subtotal</th>
