@@ -363,6 +363,12 @@ select {
 }
 
 /* Home Slider */
+@media (max-width: 767px) {
+    .slider {
+        display: none;
+    }
+}
+
 .slider .item {
     position: relative;
     height: 620px;
