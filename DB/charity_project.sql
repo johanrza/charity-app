@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jun 03, 2024 at 07:25 AM
--- Server version: 8.2.0
--- PHP Version: 8.3.1
+-- Host: 127.0.0.1
+-- Generation Time: Aug 12, 2024 at 10:10 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,13 +28,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admins` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `token` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -44,7 +44,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `photo`, `token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@gmail.com', NULL, '$2y$10$CRhsxQj8E3J4RDxdOFsGLeAby4TRfRLb.qy.f20nqaswgb8AIVn8y', '1698647869.jpg', NULL, '2023-10-30 00:36:49', '2023-12-20 07:36:52');
+(1, 'Admin', 'admin@gmail.com', NULL, '$2y$10$qHfAvePjGm.f2ARCOTLzC.vIdXyYNRRxP/vIWQOwy88YnnO5TiQ56', NULL, NULL, '2024-05-16 08:35:19', '2024-05-16 08:35:19');
 
 -- --------------------------------------------------------
 
@@ -53,15 +53,15 @@ INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `p
 --
 
 CREATE TABLE `causes` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `short_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `featured_photo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `goal` int NOT NULL,
-  `raised` int DEFAULT NULL,
-  `is_featured` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `short_description` text NOT NULL,
+  `description` text NOT NULL,
+  `featured_photo` varchar(255) NOT NULL,
+  `goal` int(11) NOT NULL,
+  `raised` int(11) DEFAULT NULL,
+  `is_featured` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -71,9 +71,9 @@ CREATE TABLE `causes` (
 --
 
 INSERT INTO `causes` (`id`, `name`, `slug`, `short_description`, `description`, `featured_photo`, `goal`, `raised`, `is_featured`, `created_at`, `updated_at`) VALUES
-(1, 'Child Support', 'child-support', 'Lorem ipsum dolor sit amet, cum ei ponderum mandamus, ei altera quidam sapientem eum. Iriure timeam perpetua ut cum.', '<p>Lorem ipsum dolor sit amet, cum ei ponderum mandamus, ei altera quidam sapientem eum. Iriure timeam perpetua ut cum, quando melius ad ius. Qui populo elaboraret te, eam ei prima dolores, vis et semper minimum forensibus. Simul semper vivendo no eam, alienum iracundia constituam in quo. An eius dicta impetus his, atqui graeco vel eu.<br /><br />Eros omnis recusabo eu vim, et mandamus vulputate his. Detracto torquatos sit id, nec eu alienum disputando. Augue putant ex vis, case inermis comprehensam mei id. Eu percipit platonem vis, cum ea dolore utroque volumus.<br /><br />Minim gubergren moderatius et quo, augue quidam in sea. In duo movet sanctus omittam, fabulas forensibus no sed. Sed tation noluisse id, mei alii platonem ea, fuisset deseruisse an has. Nemore ancillae disputando at mei, ei his melius epicuri, vim democritum elaboraret concludaturque an. Ut quidam euismod molestiae usu. Eum commune mediocritatem at, ignota repudiare vituperatoribus et est.</p>', 'cause_featured_photo_1703771328.jpg', 500, 325, 'Yes', '2023-12-28 07:48:48', '2024-01-01 08:37:15'),
-(2, 'Help to Mothers', 'help-mothers', 'Lorem ipsum dolor sit amet, cum ei ponderum mandamus, ei altera quidam sapientem eum. Iriure timeam perpetua ut cum.', '<p>Lorem ipsum dolor sit amet, cum ei ponderum mandamus, ei altera quidam sapientem eum. Iriure timeam perpetua ut cum, quando melius ad ius. Qui populo elaboraret te, eam ei prima dolores.</p>\r\n<p>Lorem ipsum dolor sit amet, cum ei ponderum mandamus, ei altera quidam sapientem eum. Iriure timeam perpetua ut cum, quando melius ad ius. Qui populo elaboraret te, eam ei prima dolores.</p>\r\n<p>Lorem ipsum dolor sit amet, cum ei ponderum mandamus, ei altera quidam sapientem eum. Iriure timeam perpetua ut cum, quando melius ad ius. Qui populo elaboraret te, eam ei prima dolores.</p>', 'cause_featured_photo_1703771403.jpg', 3500, 900, 'Yes', '2023-12-28 07:50:03', '2024-01-01 08:38:49'),
-(3, 'Water for All', 'water-for-all', 'Lorem ipsum dolor sit amet, cum ei ponderum mandamus, ei altera quidam sapientem eum. Iriure timeam perpetua ut cum.', '<p>Lorem ipsum dolor sit amet, cum ei ponderum mandamus, ei altera quidam sapientem eum. Iriure timeam perpetua ut cum, quando melius ad ius. Qui populo elaboraret te, eam ei prima dolores.</p>\r\n<p>Lorem ipsum dolor sit amet, cum ei ponderum mandamus, ei altera quidam sapientem eum. Iriure timeam perpetua ut cum, quando melius ad ius. Qui populo elaboraret te, eam ei prima dolores.</p>\r\n<p>Lorem ipsum dolor sit amet, cum ei ponderum mandamus, ei altera quidam sapientem eum. Iriure timeam perpetua ut cum, quando melius ad ius. Qui populo elaboraret te, eam ei prima dolores.</p>', 'cause_featured_photo_1703771440.jpg', 2400, 0, 'Yes', '2023-12-28 07:50:40', '2024-01-01 08:38:58');
+(1, 'Sumbangan Untuk Warga yang Membutuhkan', 'sumbangan-untuk-warga-yang-membutuhkan', 'Bantu warga dengan sumbangan Anda untuk memberikan bantuan pangan, pendidikan, kesehatan, dan darurat yang sangat dibutuhkan.', '<p>Bergabunglah dalam gerakan kebaikan kami dengan menyumbang untuk membantu warga Desa Titang yang sedang mengalami kesulitan. Sumbangan Anda akan digunakan untuk memberikan bantuan yang sangat dibutuhkan dalam berbagai bidang seperti pangan, pendidikan, kesehatan, dan bantuan darurat. Kami komitmen untuk memastikan setiap sumbangan Anda memberikan dampak positif yang nyata bagi masyarakat Desa Titang.</p>', 'cause_featured_photo_1703771328.jpg', 10000000, 5300500, 'Yes', '2023-12-28 07:48:48', '2024-07-23 11:58:56'),
+(2, 'Bantuan Kebersihan', 'bantuan-kebersihan', 'Sumbangkan untuk mendukung program kebersihan lingkungan dan bantu meningkatkan kesehatan masyarakat.', '<p>Gabunglah dalam upaya kami untuk meningkatkan kebersihan lingkungan dengan menyumbangkan untuk program Bantuan Kebersihan. Sumbangan Anda akan digunakan untuk mendukung inisiatif pembersihan dan pengelolaan lingkungan di berbagai lokasi yang membutuhkan. Kami berkomitmen untuk menjaga kebersihan lingkungan demi kesehatan dan kesejahteraan masyarakat secara keseluruhan.</p>', 'cause_featured_photo_1703771403.jpg', 500000, 401100, 'Yes', '2023-12-28 07:50:03', '2024-07-21 07:25:29'),
+(6, 'Bantuan Pendidikan', 'bantuan-pendidikan', 'Bertujuan untuk memberikan akses pendidikan yang setara bagi anak-anak dari keluarga kurang mampu.', '<p>Program yang kami selenggarakan merupakan inisiatif untuk mengurangi kesenjangan pendidikan di desa. Kami fokus pada anak-anak dari keluarga yang kurang mampu untuk memastikan bahwa mereka memiliki akses yang setara terhadap pendidikan berkualitas. Donasi yang kami terima digunakan untuk menyediakan perlengkapan sekolah seperti buku pelajaran, alat tulis, dan seragam, serta untuk membantu menutup biaya sekolah mereka. Setiap donasi tidak hanya mendukung pendidikan formal mereka tetapi juga membangun fondasi yang kuat untuk pengembangan pribadi dan profesional mereka di masa depan.</p>\r\n<p>Kami bekerja sama erat dengan sekolah-sekolah lokal dan komunitas untuk memastikan bahwa bantuan yang diberikan benar-benar memenuhi kebutuhan yang ada dan memberikan dampak yang signifikan. Selain itu, kami juga menyelenggarakan program tambahan seperti pelatihan keterampilan hidup, seminar motivasi, dan kegiatan ekstrakurikuler untuk meningkatkan pengalaman belajar mereka dan memberikan perspektif yang lebih luas tentang potensi masa depan mereka. Melalui kolaborasi dengan pihak-pihak terkait dan dukungan dari para donatur, kami berharap dapat memberikan landasan yang kokoh bagi pertumbuhan intelektual dan sosial anak-anak di desa.</p>', 'cause_featured_photo_1721393558.jpg', 2500000, 50000, 'Yes', '2024-07-19 12:52:38', '2024-07-25 13:14:47');
 
 -- --------------------------------------------------------
 
@@ -82,14 +82,14 @@ INSERT INTO `causes` (`id`, `name`, `slug`, `short_description`, `description`, 
 --
 
 CREATE TABLE `cause_donations` (
-  `id` bigint UNSIGNED NOT NULL,
-  `cause_id` int NOT NULL,
-  `user_id` int NOT NULL,
-  `price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `currency` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `payment_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payment_method` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payment_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `cause_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `price` varchar(255) NOT NULL,
+  `currency` varchar(255) DEFAULT NULL,
+  `payment_id` varchar(255) NOT NULL,
+  `payment_method` varchar(255) NOT NULL,
+  `payment_status` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -99,10 +99,23 @@ CREATE TABLE `cause_donations` (
 --
 
 INSERT INTO `cause_donations` (`id`, `cause_id`, `user_id`, `price`, `currency`, `payment_id`, `payment_method`, `payment_status`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, '25', 'USD', '0T5814417C081113B', 'PayPal', 'COMPLETED', '2023-12-31 20:32:58', '2023-12-31 20:32:58'),
-(2, 1, 1, '300', 'USD', '61L16207UC947504T', 'PayPal', 'COMPLETED', '2023-12-31 20:33:49', '2023-12-31 20:33:49'),
-(3, 2, 1, '100', 'usd', 'cs_test_a1DAveyMygCBjI5FCJ8PHivrY3tpJSAAsbY2lL8mseVsiBgDppfsecVaiE', 'Stripe', 'COMPLETED', '2023-12-31 20:57:09', '2023-12-31 20:57:09'),
-(4, 2, 2, '800', 'usd', 'cs_test_a12mqK3YKAnGrc2RADP9CwhIU0IFJHJBrLKXtll4RsQD9wQrzJVVA9aXnt', 'Stripe', 'COMPLETED', '2023-12-31 21:00:16', '2023-12-31 21:00:16');
+(5, 1, 1, '12.00', 'IDR', 'cause-6645c70f77eac', 'qris', 'COMPLETED', '2024-05-16 08:44:58', '2024-05-16 08:44:58'),
+(6, 1, 1, '163.00', 'IDR', 'cause-6645c7a807237', 'qris', 'COMPLETED', '2024-05-16 08:45:48', '2024-05-16 08:45:48'),
+(7, 2, 1, '100.00', 'IDR', 'cause-666c7c5b3febd', 'qris', 'COMPLETED', '2024-06-14 17:23:03', '2024-06-14 17:23:03'),
+(8, 2, 1, '100.00', 'IDR', 'cause-666c7ce2b8956', 'qris', 'COMPLETED', '2024-06-14 17:25:22', '2024-06-14 17:25:22'),
+(9, 1, 4, '2000000.00', 'IDR', 'cause-667b292737203', 'qris', 'COMPLETED', '2024-06-25 20:33:08', '2024-06-25 20:33:08'),
+(11, 1, 7, '50000.00', 'IDR', 'cause-6690ced37701e', 'qris', 'COMPLETED', '2024-07-12 06:38:20', '2024-07-12 06:38:20'),
+(12, 1, 4, '100000.00', 'IDR', 'cause-6692d85d57ce6', 'qris', 'COMPLETED', '2024-07-13 19:41:34', '2024-07-13 19:41:34'),
+(13, 1, 4, '50000.00', 'IDR', 'cause-6692d90997d50', 'qris', 'COMPLETED', '2024-07-13 19:44:29', '2024-07-13 19:44:29'),
+(14, 1, 4, '1000000.00', 'IDR', 'cause-66952dd0cf693', 'qris', 'COMPLETED', '2024-07-15 14:10:49', '2024-07-15 14:10:49'),
+(15, 1, 4, '50000.00', 'IDR', 'cause-66976db4ae06b', 'qris', 'COMPLETED', '2024-07-17 07:08:04', '2024-07-17 07:08:04'),
+(16, 1, 4, '1000000.00', 'IDR', 'cause-66976df3e210a', 'qris', 'COMPLETED', '2024-07-17 07:08:55', '2024-07-17 07:08:55'),
+(17, 2, 4, '50000.00', 'IDR', 'cause-669a4473793a0', 'qris', 'COMPLETED', '2024-07-19 10:48:48', '2024-07-19 10:48:48'),
+(18, 2, 4, '50000.00', 'IDR', 'cause-669a453ae6bbc', 'qris', 'COMPLETED', '2024-07-19 10:52:00', '2024-07-19 10:52:00'),
+(19, 1, 9, '1000000.00', 'IDR', 'cause-669cb7211777f', 'bank_transfer', 'COMPLETED', '2024-07-21 07:23:14', '2024-07-21 07:23:14'),
+(20, 2, 9, '300000.00', 'IDR', 'cause-669cb7bfd0f3a', 'echannel', 'COMPLETED', '2024-07-21 07:25:29', '2024-07-21 07:25:29'),
+(21, 1, 10, '50000.00', 'IDR', 'cause-669f9ac09690b', 'qris', 'COMPLETED', '2024-07-23 11:58:56', '2024-07-23 11:58:56'),
+(22, 6, 4, '50000.00', 'IDR', 'cause-66a24f98601bb', 'qris', 'COMPLETED', '2024-07-25 13:14:47', '2024-07-25 13:14:47');
 
 -- --------------------------------------------------------
 
@@ -111,10 +124,10 @@ INSERT INTO `cause_donations` (`id`, `cause_id`, `user_id`, `price`, `currency`,
 --
 
 CREATE TABLE `cause_faqs` (
-  `id` bigint UNSIGNED NOT NULL,
-  `cause_id` int NOT NULL,
-  `question` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `answer` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `cause_id` int(11) NOT NULL,
+  `question` varchar(255) NOT NULL,
+  `answer` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -124,13 +137,10 @@ CREATE TABLE `cause_faqs` (
 --
 
 INSERT INTO `cause_faqs` (`id`, `cause_id`, `question`, `answer`, `created_at`, `updated_at`) VALUES
-(1, 1, 'What is Child-Support Charity?', 'Omnis recusabo eu vim, et mandamus vulputate his. Detracto torquatos sit id, nec eu alienum disputando. Augue putant ex vis, case inermis comprehensam mei id. Eu percipit platonem vis, cum ea dolore utroque volumus.', '2023-12-31 19:34:27', '2023-12-31 19:56:22'),
-(2, 1, 'How can I get involved with Child Support Charity?', 'Minim gubergren moderatius et quo, augue quidam in sea. In duo movet sanctus omittam, fabulas forensibus no sed. Sed tation noluisse id, mei alii platonem ea, fuisset deseruisse an has. Nemore ancillae disputando at mei, ei his melius epicuri, vim democritum elaboraret concludaturque an. Ut quidam euismod molestiae usu. Eum commune mediocritatem at, ignota repudiare vituperatoribus et est.', '2023-12-31 19:34:54', '2023-12-31 19:34:54'),
-(3, 1, 'Where does the money donated to Child Support Charity go?', 'Ad quem maluisset cum, audiam tritani ne mei. Id has inani eloquentiam, his virtute eloquentiam ut, ad duo modus commune. Et eam consul pericula necessitatibus. Sit ei enim exerci blandit.', '2023-12-31 19:35:08', '2023-12-31 19:35:08'),
-(4, 1, 'Can I make a one-time donation, or do you offer recurring donation options?', 'Euripidis definitionem in pri, an pro fuisset tincidunt. Ius at aperiam fabulas, ocurreret voluptatibus ad pri. Homero iuvaret luptatum ius no. Ea eam enim laudem adversarium, dico errem sed ea.', '2023-12-31 19:35:23', '2023-12-31 19:35:23'),
-(5, 2, 'What is Child Support Charity?', 'Eros omnis recusabo eu vim, et mandamus vulputate his. Detracto torquatos sit id, nec eu alienum disputando. Augue putant ex vis, case inermis comprehensam mei id. Eu percipit platonem vis, cum ea dolore utroque volumus.', '2023-12-31 19:35:46', '2023-12-31 19:35:46'),
-(6, 2, 'How can I get involved with Child Support Charity?', 'Minim gubergren moderatius et quo, augue quidam in sea. In duo movet sanctus omittam, fabulas forensibus no sed. Sed tation noluisse id, mei alii platonem ea, fuisset deseruisse an has. Nemore ancillae disputando at mei, ei his melius epicuri, vim democritum elaboraret concludaturque an. Ut quidam euismod molestiae usu. Eum commune mediocritatem at, ignota repudiare vituperatoribus et est.', '2023-12-31 19:35:55', '2023-12-31 19:35:55'),
-(7, 2, 'Where does the money donated to Child Support Charity go?', 'Ad quem maluisset cum, audiam tritani ne mei. Id has inani eloquentiam, his virtute eloquentiam ut, ad duo modus commune. Et eam consul pericula necessitatibus. Sit ei enim exerci blandit.', '2023-12-31 19:36:05', '2023-12-31 19:36:05'),
+(1, 1, 'Apa itu Sumbangan Warga?', 'Omnis recusabo eu vim, et mandamus vulputate his. Detracto torquatos sit id, nec eu alienum disputando. Augue putant ex vis, case inermis comprehensam mei id. Eu percipit platonem vis, cum ea dolore utroque volumus.', '2023-12-31 19:34:27', '2024-07-19 16:34:16'),
+(2, 1, 'Kemana perginya uang yang telah disumbangkan?', 'Minim gubergren moderatius et quo, augue quidam in sea. In duo movet sanctus omittam, fabulas forensibus no sed. Sed tation noluisse id, mei alii platonem ea, fuisset deseruisse an has. Nemore ancillae disputando at mei, ei his melius epicuri, vim democritum elaboraret concludaturque an. Ut quidam euismod molestiae usu. Eum commune mediocritatem at, ignota repudiare vituperatoribus et est.', '2023-12-31 19:34:54', '2024-07-19 16:34:24'),
+(5, 2, 'Apa itu Bantuan Kebersihan?', 'Eros omnis recusabo eu vim, et mandamus vulputate his. Detracto torquatos sit id, nec eu alienum disputando. Augue putant ex vis, case inermis comprehensam mei id. Eu percipit platonem vis, cum ea dolore utroque volumus.', '2023-12-31 19:35:46', '2024-07-19 17:50:03'),
+(7, 2, 'Kemana perginya uang yang disumbangkan ke Bantuan Kebersihan ini?', 'Ad quem maluisset cum, audiam tritani ne mei. Id has inani eloquentiam, his virtute eloquentiam ut, ad duo modus commune. Et eam consul pericula necessitatibus. Sit ei enim exerci blandit.', '2023-12-31 19:36:05', '2024-07-19 17:50:44'),
 (8, 3, 'What is Child Support Charity?', 'Euripidis definitionem in pri, an pro fuisset tincidunt. Ius at aperiam fabulas, ocurreret voluptatibus ad pri. Homero iuvaret luptatum ius no. Ea eam enim laudem adversarium, dico errem sed ea.', '2023-12-31 19:36:26', '2023-12-31 19:36:26'),
 (9, 3, 'How can I get involved with Child Support Charity?', 'Ad quem maluisset cum, audiam tritani ne mei. Id has inani eloquentiam, his virtute eloquentiam ut, ad duo modus commune. Et eam consul pericula necessitatibus. Sit ei enim exerci blandit.', '2023-12-31 19:36:32', '2023-12-31 19:36:32'),
 (10, 3, 'Are my donations tax-deductible?', 'Ei altera quidam sapientem eum. Iriure timeam perpetua ut cum, quando melius ad ius. Qui populo elaboraret te, eam ei prima dolores, vis et semper minimum forensibus. Simul semper vivendo no eam, alienum iracundia constituam in quo. An eius dicta impetus his, atqui graeco vel eu.', '2023-12-31 19:36:48', '2023-12-31 19:55:55');
@@ -142,9 +152,9 @@ INSERT INTO `cause_faqs` (`id`, `cause_id`, `question`, `answer`, `created_at`, 
 --
 
 CREATE TABLE `cause_photos` (
-  `id` bigint UNSIGNED NOT NULL,
-  `cause_id` int NOT NULL,
-  `photo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `cause_id` int(11) NOT NULL,
+  `photo` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -171,9 +181,9 @@ INSERT INTO `cause_photos` (`id`, `cause_id`, `photo`, `created_at`, `updated_at
 --
 
 CREATE TABLE `cause_videos` (
-  `id` bigint UNSIGNED NOT NULL,
-  `cause_id` int NOT NULL,
-  `youtube_video_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `cause_id` int(11) NOT NULL,
+  `youtube_video_id` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -200,12 +210,12 @@ INSERT INTO `cause_videos` (`id`, `cause_id`, `youtube_video_id`, `created_at`, 
 --
 
 CREATE TABLE `comments` (
-  `id` bigint UNSIGNED NOT NULL,
-  `comment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `post_id` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `comment` text NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'pending',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -215,9 +225,10 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`id`, `comment`, `post_id`, `name`, `email`, `status`, `created_at`, `updated_at`) VALUES
-(5, 'This is a very nice website. I love it.', 6, 'Smith', 'smith@gmail.com', 'Active', '2023-12-20 05:24:03', '2024-01-03 01:00:05'),
-(6, 'I want to make a same website like this. So please contact me in this email address that I give you.', 6, 'Peter Smith', 'peter@gmail.com', 'Active', '2023-12-20 06:03:00', '2023-12-20 06:03:16'),
-(7, 'I love the template of this website very much. Please sell one piece to me.', 6, 'Arefin', 'arefin2k@gmail.com', 'Active', '2023-12-20 06:16:18', '2023-12-20 06:17:25');
+(8, 'good', 1, 'bambang', 'asd@gmail.com', 'Active', '2024-06-04 16:37:20', '2024-06-04 16:40:36'),
+(9, 'test komen', 1, 'Samsudin', 'lex@gmail.com', 'Pending', '2024-06-04 16:39:12', '2024-07-19 16:37:53'),
+(11, 'Terharu bacanya padahal cuma lorem ipsum doang 😢😭', 6, 'Samsudin alala balbala', 'samsudin@gmail.com', 'Active', '2024-06-24 05:42:28', '2024-06-24 05:44:09'),
+(18, 'Mantap, artikel ini dapat meningkatkan kesadaran masyarakat akan pentingnya wadjkbasjihdbsdas whehehehe', 1, 'Budi', 'budi@gmail.com', 'Active', '2024-07-19 10:38:05', '2024-07-19 10:38:05');
 
 -- --------------------------------------------------------
 
@@ -226,16 +237,16 @@ INSERT INTO `comments` (`id`, `comment`, `post_id`, `name`, `email`, `status`, `
 --
 
 CREATE TABLE `counters` (
-  `id` bigint UNSIGNED NOT NULL,
-  `counter1_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `counter1_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `counter2_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `counter2_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `counter3_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `counter3_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `counter4_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `counter4_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `counter1_number` varchar(255) NOT NULL,
+  `counter1_name` varchar(255) NOT NULL,
+  `counter2_number` varchar(255) NOT NULL,
+  `counter2_name` varchar(255) NOT NULL,
+  `counter3_number` varchar(255) NOT NULL,
+  `counter3_name` varchar(255) NOT NULL,
+  `counter4_number` varchar(255) NOT NULL,
+  `counter4_name` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -245,7 +256,7 @@ CREATE TABLE `counters` (
 --
 
 INSERT INTO `counters` (`id`, `counter1_number`, `counter1_name`, `counter2_number`, `counter2_name`, `counter3_number`, `counter3_name`, `counter4_number`, `counter4_name`, `status`, `created_at`, `updated_at`) VALUES
-(1, '1120', 'Donations', '300', 'Volunteers', '130', 'Projects', '160', 'Events Organized', 'Show', NULL, '2023-12-18 12:12:52');
+(1, '101', 'Donasi', '4', 'Relawan', '10', 'Warga Terbantu', '9', 'Events', 'Show', NULL, '2024-06-20 05:14:28');
 
 -- --------------------------------------------------------
 
@@ -254,19 +265,19 @@ INSERT INTO `counters` (`id`, `counter1_number`, `counter1_name`, `counter2_numb
 --
 
 CREATE TABLE `events` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `short_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `featured_photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `time` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `map` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `price` int DEFAULT NULL,
-  `total_seat` int DEFAULT NULL,
-  `booked_seat` int DEFAULT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `short_description` text NOT NULL,
+  `description` text NOT NULL,
+  `featured_photo` varchar(255) NOT NULL,
+  `date` varchar(255) NOT NULL,
+  `time` varchar(255) NOT NULL,
+  `location` varchar(255) NOT NULL,
+  `map` text DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `total_seat` int(11) DEFAULT NULL,
+  `booked_seat` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -276,10 +287,9 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `name`, `slug`, `short_description`, `description`, `featured_photo`, `date`, `time`, `location`, `map`, `price`, `total_seat`, `booked_seat`, `created_at`, `updated_at`) VALUES
-(1, 'Abled Child Cancer', 'abled-child-cancer', 'To provide food, shelter, clothing, education and medical assistance to homeless children and their families.', '<p>Lorem ipsum dolor sit amet, no unum senserit constituam has, has an enim recusabo, dolorum consequuntur ad quo. Nisl nonumes ea eam, at pro eleifend partiendo, alii summo ex nam. Eam impetus efficiantur ullamcorper no, ad est meliore patrioque sententiae, no eam atqui possit. An iriure meliore maiorum sed, quo an altera numquam. Nam eu commodo persecuti. Eu eos tibique delectus disputando, ei purto wisi euripidis mei, vis augue electram iudicabit ea.</p>\r\n<p>Eum id legimus rationibus, aeque eligendi ullamcorper mel et. Habeo officiis id usu, eu intellegat voluptatum definiebas nec, cu his error solet voluptua. Nec in wisi labore expetendis. His hinc verear ne, pri dignissim sententiae percipitur no, mel mollis ceteros gubergren in.</p>\r\n<p>Cu cum tota summo vulputate, ullum recusabo neglegentur per ex. Velit deleniti facilisi an usu, vim ludus prompta probatus ne. Ad eum ferri liber, sea no virtute facilisi. Id ius dico consectetuer. Te animal facilisis his, est ipsum putent te.</p>', 'event_featured_photo_1703295575.jpg', '2024-02-16', '14:45', '937 Jamajo Blvd, Orlando FL 32803, USA', NULL, 9, 10, 10, '2023-12-20 20:04:49', '2024-01-01 19:04:53'),
-(2, 'Contribute for Recovery', 'Contribute-for-Recovery', 'To help the mothers who are homeless & helpless, we provide them food, shelter & medical assistance.', '<p>Lorem ipsum dolor sit amet, no unum senserit constituam has, has an enim recusabo, dolorum consequuntur ad quo. Nisl nonumes ea eam, at pro eleifend partiendo, alii summo ex nam. Eam impetus efficiantur ullamcorper no, ad est meliore patrioque sententiae, no eam atqui possit. An iriure meliore maiorum sed, quo an altera numquam. Nam eu commodo persecuti. Eu eos tibique delectus disputando, ei purto wisi euripidis mei, vis augue electram iudicabit ea.</p>\r\n<p>Eum id legimus rationibus, aeque eligendi ullamcorper mel et. Habeo officiis id usu, eu intellegat voluptatum definiebas nec, cu his error solet voluptua. Nec in wisi labore expetendis. His hinc verear ne, pri dignissim sententiae percipitur no, mel mollis ceteros gubergren in.</p>\r\n<p>Cu cum tota summo vulputate, ullum recusabo neglegentur per ex. Velit deleniti facilisi an usu, vim ludus prompta probatus ne. Ad eum ferri liber, sea no virtute facilisi. Id ius dico consectetuer. Te animal facilisis his, est ipsum putent te.</p>\r\n<p>&nbsp;</p>', 'event_featured_photo_1703295164.jpg', '2024-01-18', '09:00', '937 Jamajo Blvd, Orlando FL 32803, USA', NULL, 19, NULL, 3, '2023-12-22 19:32:44', '2023-12-25 06:36:40'),
-(4, 'Playing For World', 'Playing-For-World', 'To provide food, shelter, clothing, education and medical assistance to homeless children and their families.', '<p>Lorem ipsum dolor sit amet, no unum senserit constituam has, has an enim recusabo, dolorum consequuntur ad quo. Nisl nonumes ea eam, at pro eleifend partiendo, alii summo ex nam. Eam impetus efficiantur ullamcorper no, ad est meliore patrioque sententiae, no eam atqui possit. An iriure meliore maiorum sed, quo an altera numquam. Nam eu commodo persecuti. Eu eos tibique delectus disputando, ei purto wisi euripidis mei, vis augue electram iudicabit ea.</p>\r\n<p>Eum id legimus rationibus, aeque eligendi ullamcorper mel et. Habeo officiis id usu, eu intellegat voluptatum definiebas nec, cu his error solet voluptua. Nec in wisi labore expetendis. His hinc verear ne, pri dignissim sententiae percipitur no, mel mollis ceteros gubergren in.</p>\r\n<p>Cu cum tota summo vulputate, ullum recusabo neglegentur per ex. Velit deleniti facilisi an usu, vim ludus prompta probatus ne. Ad eum ferri liber, sea no virtute facilisi. Id ius dico consectetuer. Te animal facilisis his, est ipsum putent te.</p>\r\n<p>&nbsp;</p>', 'event_featured_photo_1703295564.jpg', '2024-03-28', '07:00', '937 Jamajo Blvd, Orlando FL 32803, USA', NULL, 0, NULL, 7, '2023-12-22 19:39:24', '2024-01-01 19:05:10'),
-(5, 'Attaining in a Special Ceremony', 'Attaining-Special-Ceremony', 'To provide food, shelter, clothing, education and medical assistance to homeless children and their families.', '<p style=\"text-align: left;\">Lorem ipsum dolor sit amet, no unum senserit constituam has, has an enim recusabo, dolorum consequuntur ad quo. Nisl nonumes ea eam, at pro eleifend partiendo, alii summo ex nam. Eam impetus efficiantur ullamcorper no, ad est meliore patrioque sententiae, no eam atqui possit. An iriure meliore maiorum sed, quo an altera numquam. Nam eu commodo persecuti. Eu eos tibique delectus disputando, ei purto wisi euripidis mei, vis augue electram iudicabit ea.</p>\r\n<p>Eum id legimus rationibus, aeque eligendi ullamcorper mel et. Habeo officiis id usu, eu intellegat voluptatum definiebas nec, cu his error solet voluptua. Nec in wisi labore expetendis. His hinc verear ne, pri dignissim sententiae percipitur no, mel mollis ceteros gubergren in.</p>\r\n<p>Cu cum tota summo vulputate, ullum recusabo neglegentur per ex. Velit deleniti facilisi an usu, vim ludus prompta probatus ne. Ad eum ferri liber, sea no virtute facilisi. Id ius dico consectetuer. Te animal facilisis his, est ipsum putent te.</p>\r\n<p>&nbsp;</p>', 'event_featured_photo_1703295688.jpg', '2023-12-30', '11:00', '937 Jamajo Blvd, Orlando FL 32803, USA', NULL, 0, 5, 3, '2023-12-22 19:41:28', '2023-12-25 06:32:30');
+(2, 'Donor Darah', 'donor-darah', 'Yuk, jadi pahlawan dengan datang ke lokasi dan donor darah untuk membantu mereka yang membutuhkan', '<div class=\"flex-shrink-0 flex flex-col relative items-end\">\r\n<div class=\"pt-0\">\r\n<div class=\"gizmo-bot-avatar flex h-8 w-8 items-center justify-center overflow-hidden rounded-full\">\r\n<div class=\"relative p-1 rounded-sm flex items-center justify-center bg-token-main-surface-primary text-token-text-primary h-8 w-8\">Yuk, mari kita bergerak bersama untuk membantu mereka yang membutuhkan darah! Hanya dengan satu tindakan kebaikan dari Anda, Anda bisa memberikan harapan baru bagi banyak orang yang sedang berjuang melawan penyakit. Proses donor darah sangat mudah dan tidak menyakitkan sama sekali. Anda hanya perlu datang ke lokasi, di mana tim medis akan siap menyambut sumbangan darah Anda dengan penuh rasa terima kasih. Dengan setiap kantong darah yang Anda sumbangkan, Anda berpotensi menjadi pahlawan bagi seseorang yang sangat mengandalkan bantuan tersebut untuk pemulihan mereka.</div>\r\n</div>\r\n</div>\r\n</div>\r\n<div class=\"group/conversation-turn relative flex w-full min-w-0 flex-col agent-turn\">\r\n<div class=\"flex-col gap-1 md:gap-3\">\r\n<div class=\"flex flex-grow flex-col max-w-full\">\r\n<div class=\"min-h-[20px] text-message flex w-full flex-col items-end gap-2 whitespace-pre-wrap break-words [.text-message+&amp;]:mt-5 overflow-x-auto\" dir=\"auto\" data-message-author-role=\"assistant\" data-message-id=\"23269e7b-0132-4c17-86cd-df04733a92fb\">\r\n<div class=\"flex w-full flex-col gap-1 empty:hidden first:pt-[3px]\">\r\n<div class=\"markdown prose w-full break-words dark:prose-invert dark\">\r\n<p>Ayo, jangan tunda lagi! Datanglah sekarang ke lokasi untuk donor darah. Dengan bergabung dalam aksi ini, Anda memberikan kontribusi yang sangat berarti untuk kesehatan dan kehidupan orang lain. Jadilah bagian dari komunitas yang berempati dan peduli dengan berbagi darah Anda. Bersama-sama, kita bisa membuat perbedaan nyata dalam menyelamatkan nyawa dan membantu orang-orang yang membutuhkan untuk kembali pulih dengan cepat dan sempurna.</p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>', 'event_featured_photo_1703295164.jpg', '2024-07-31', '09:00', 'Kantor Desa Titang', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7906.726802739489!2d110.53701309036764!3d-7.751225519070365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a4523a2d1ef59%3A0x1c90c4706ec80a23!2sBalai%20Desa%20Titang!5e0!3m2!1sen!2sid!4v1720963169326!5m2!1sen!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 0, NULL, 0, '2023-12-22 19:32:44', '2024-07-19 12:41:04'),
+(7, 'Workshop Cegah Stunting', 'workshop-cegah-stunting', 'Meningkatkan pemahaman tentang pentingnya gizi dan perawatan anak yang tepat sejak dini. Peserta akan belajar mengenali penyebab stunting, pentingnya gizi seimbang, peran orang tua dan pendidik dalam pencegahan stunting, serta dukungan terhadap kebijakan publik yang mendukung. Workshop ini merupakan langkah nyata dalam menjaga kesehatan anak untuk masa depan yang lebih baik.', '<p>Stunting merupakan masalah serius dalam pertumbuhan anak yang dapat memengaruhi kualitas hidup mereka di masa depan. Untuk mengatasi masalah ini, Workshop Cegah Stunting hadir sebagai upaya untuk memberikan pemahaman mendalam kepada orang tua dan pendidik tentang pentingnya gizi dan perawatan anak yang tepat sejak dini. Acara ini tidak hanya berfokus pada pengetahuan praktis, tetapi juga memberikan panduan konkret dalam penerapan pola makan sehat dan gaya hidup yang mendukung pertumbuhan optimal anak-anak.</p>\r\n<h2>Mengenali Stunting dan Dampaknya</h2>\r\n<p>Stunting terjadi ketika anak mengalami pertumbuhan tubuh yang terhambat akibat kekurangan gizi, terutama pada periode 1.000 hari pertama kehidupan. Workshop ini akan membahas penyebab stunting, dampak jangka panjangnya terhadap kesehatan fisik dan kognitif anak, serta pentingnya pencegahan sejak dini.</p>\r\n<h2>Gizi Seimbang untuk Pertumbuhan Optimal</h2>\r\n<p>Peserta akan diajak untuk memahami pentingnya gizi seimbang dalam menghindari stunting. Workshop ini akan memberikan pengetahuan tentang makanan-makanan yang kaya akan nutrisi penting bagi pertumbuhan anak, serta cara menyusun pola makan yang sesuai dengan kebutuhan mereka.</p>\r\n<h2>Peran Orang Tua dan Pendidik dalam Pencegahan Stunting</h2>\r\n<p>Orang tua dan pendidik memegang peran kunci dalam pencegahan stunting. Workshop ini akan memberikan strategi praktis bagi mereka untuk mendukung tumbuh kembang anak secara optimal melalui nutrisi yang tepat, perawatan yang baik, serta lingkungan yang mendukung.</p>\r\n<h2>Mendukung Kebijakan Publik yang Berkelanjutan</h2>\r\n<p>Selain itu, workshop ini juga akan membahas pentingnya dukungan terhadap kebijakan publik yang mendukung pencegahan stunting secara nasional. Peserta akan diberikan wawasan tentang upaya-upaya pemerintah dalam mengatasi masalah stunting dan bagaimana mereka dapat berkontribusi dalam mendukung implementasi kebijakan tersebut di level komunitas.</p>\r\n<h2>Kesimpulan</h2>\r\n<p>Workshop Cegah Stunting bukan hanya merupakan acara edukasi, tetapi juga langkah konkret untuk menciptakan masa depan yang lebih baik bagi anak-anak Indonesia. Dengan pengetahuan yang didapat dari workshop ini, peserta diharapkan dapat menjadi agen perubahan dalam upaya pencegahan stunting dan memberikan dampak positif yang signifikan bagi generasi mendatang.</p>', 'event_featured_photo_1720963798.jpg', '2024-07-31', '09:00', 'Kantor Desa Titang', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7906.726802739489!2d110.53701309036764!3d-7.751225519070365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a4523a2d1ef59%3A0x1c90c4706ec80a23!2sBalai%20Desa%20Titang!5e0!3m2!1sen!2sid!4v1720963169326!5m2!1sen!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 0, NULL, NULL, '2024-07-14 13:29:58', '2024-07-19 10:25:44'),
+(10, 'Workshop Ekonomi Pembuatan Sablon', 'workshop-ekonomi-pembuatan-sablon', 'Workshop ini mengajarkan teknik-teknik sablon dari dasar hingga lanjutan serta strategi bisnis yang efektif. Peserta akan meningkatkan kreativitas dalam desain sablon dan memahami pentingnya keberlanjutan dalam industri ini. Workshop ini juga menyediakan kesempatan untuk membangun jaringan dengan profesional sejawat, membuka peluang kolaborasi yang berharga.', '<div class=\"md:pt-0 dark:border-white/20 md:border-transparent md:dark:border-transparent w-full\">\r\n<div class=\"text-base px-3 md:px-4 m-auto md:px-5 lg:px-1 xl:px-5\">\r\n<div class=\"mx-auto flex flex-1 gap-4 text-base md:gap-5 lg:gap-6 md:max-w-3xl\"><form class=\"w-full\" aria-haspopup=\"dialog\" aria-expanded=\"false\" aria-controls=\"radix-:r1:\" data-state=\"closed\">\r\n<div class=\"relative flex h-full max-w-full flex-1 flex-col\">\r\n<div class=\"absolute bottom-full left-0 right-0 z-20\">Industri sablon tidak hanya menawarkan peluang ekonomi yang menjanjikan tetapi juga menjadi medium ekspresi kreatif yang unik. Workshop Ekonomi Pembuatan Sablon dirancang untuk memberikan peserta pemahaman mendalam tentang teknik sablon, strategi bisnis, dan pengembangan keterampilan desain yang kreatif. Dengan menggabungkan aspek teknis dan ekonomi, workshop ini mengajak peserta untuk menjelajahi potensi bisnis dalam industri yang terus berkembang ini.</div>\r\n</div>\r\n</form></div>\r\n</div>\r\n</div>\r\n<div class=\"flex-1 overflow-hidden\">\r\n<div class=\"h-full\">\r\n<div class=\"react-scroll-to-bottom--css-raohq-79elbk h-full\">\r\n<div class=\"react-scroll-to-bottom--css-raohq-1n7m0yu\">\r\n<div class=\"flex flex-col text-sm md:pb-9\">\r\n<div class=\"w-full text-token-text-primary\" dir=\"auto\" data-testid=\"conversation-turn-7\" data-scroll-anchor=\"true\">\r\n<div class=\"text-base py-[18px] px-3 md:px-4 m-auto md:px-5 lg:px-1 xl:px-5\">\r\n<div class=\"mx-auto flex flex-1 gap-4 text-base md:gap-5 lg:gap-6 md:max-w-3xl\">\r\n<div class=\"group/conversation-turn relative flex w-full min-w-0 flex-col agent-turn\">\r\n<div class=\"flex-col gap-1 md:gap-3\">\r\n<div class=\"flex flex-grow flex-col max-w-full\">\r\n<div class=\"min-h-[20px] text-message flex w-full flex-col items-end gap-2 whitespace-pre-wrap break-words [.text-message+&amp;]:mt-5 overflow-x-auto\" dir=\"auto\" data-message-author-role=\"assistant\" data-message-id=\"83a82362-3684-4c11-88a4-b356a2bf23f6\">\r\n<div class=\"flex w-full flex-col gap-1 empty:hidden first:pt-[3px]\">\r\n<div class=\"markdown prose w-full break-words dark:prose-invert dark\">\r\n<h4>Mengenal Teknik Sablon Secara Mendalam</h4>\r\n<p>Pertama-tama, workshop ini akan memperkenalkan peserta pada teknik sablon dengan detail yang komprehensif. Peserta akan mempelajari berbagai metode sablon, termasuk persiapan kain, pemilihan tinta yang tepat, dan peralatan yang dibutuhkan untuk memulai produksi. Ini adalah langkah krusial untuk memahami dasar-dasar sablon, memastikan bahwa peserta siap menghadapi tantangan teknis dalam produksi sablon mereka.</p>\r\n<h4>Strategi Ekonomi dan Bisnis</h4>\r\n<p>Selain aspek teknis, workshop ini juga memberikan fokus pada strategi ekonomi dan bisnis dalam industri sablon. Peserta akan diajak untuk memahami analisis biaya-produksi, penetapan harga yang kompetitif, dan strategi pemasaran yang efektif untuk meningkatkan visibilitas produk sablon mereka. Dengan memahami aspek ini, peserta dapat mengoptimalkan operasi mereka dan meningkatkan keuntungan dari bisnis sablon.</p>\r\n<h4>Memperluas Kreativitas dalam Desain Sablon</h4>\r\n<p>Sablon bukan hanya tentang reproduksi desain, tetapi juga medium untuk mengekspresikan kreativitas. Workshop ini akan mendorong peserta untuk mengembangkan keterampilan desain mereka, menggabungkan teknik sablon dengan inovasi desain yang unik dan menarik. Peserta akan diajak untuk menggali berbagai teknik dan gaya sablon, serta mengeksplorasi tren desain terkini untuk tetap relevan di pasar yang kompetitif.</p>\r\n<h4>Keberlanjutan dan Tren Pasar</h4>\r\n<p>Industri kreatif tidak hanya berkembang dalam hal inovasi desain tetapi juga dalam praktik keberlanjutan. Workshop ini akan menyoroti pentingnya penggunaan bahan-bahan ramah lingkungan dan praktik-praktik berkelanjutan dalam produksi sablon. Peserta akan diberikan wawasan tentang tren pasar terkini dalam industri sablon, membantu mereka untuk beradaptasi dengan perubahan pasar dan memanfaatkan peluang baru.</p>\r\n<h4>Membangun Jaringan dan Kolaborasi</h4>\r\n<p>Workshop ini juga merupakan platform yang ideal untuk membangun jaringan dengan profesional dan penggiat industri sablon lainnya. Kolaborasi antara peserta dan instruktur serta sesama peserta dapat menghasilkan ide-ide baru, membuka peluang bisnis baru, dan mendukung pertumbuhan karier dalam industri yang dinamis ini.</p>\r\n<h4>Kesimpulan</h4>\r\n<p>Dengan menghadiri Workshop Ekonomi Pembuatan Sablon, peserta tidak hanya mendapatkan pengetahuan mendalam tentang teknik sablon dan strategi bisnis, tetapi juga kesempatan untuk mengembangkan kreativitas mereka dalam industri yang penuh potensi ini. Ini adalah langkah pertama yang bagus bagi siapa pun yang ingin menjelajahi dunia sablon secara lebih mendalam, dari sisi teknis hingga ekonomi, serta untuk membangun jejaring dalam komunitas yang bersemangat dan inovatif.</p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>', 'event_featured_photo_1721384336.jpg', '2024-07-31', '09:00', 'Kantor Desa Titang', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7906.727601483725!2d110.53699163269552!3d-7.751182995840913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a4523a2d1ef59%3A0x1c90c4706ec80a23!2sBalai%20Desa%20Titang!5e0!3m2!1sen!2sid!4v1721384203088!5m2!1sen!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 5000, 50, 6, '2024-07-19 10:18:56', '2024-07-21 07:27:25');
 
 -- --------------------------------------------------------
 
@@ -288,9 +298,9 @@ INSERT INTO `events` (`id`, `name`, `slug`, `short_description`, `description`, 
 --
 
 CREATE TABLE `event_photos` (
-  `id` bigint UNSIGNED NOT NULL,
-  `event_id` int NOT NULL,
-  `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `event_id` int(11) NOT NULL,
+  `photo` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -302,7 +312,6 @@ CREATE TABLE `event_photos` (
 INSERT INTO `event_photos` (`id`, `event_id`, `photo`, `created_at`, `updated_at`) VALUES
 (1, 1, 'event_photo_1703297335.jpg', '2023-12-22 20:08:55', '2023-12-22 20:08:55'),
 (2, 1, 'event_photo_1703297349.jpg', '2023-12-22 20:09:09', '2023-12-22 20:09:09'),
-(3, 1, 'event_photo_1703297370.jpg', '2023-12-22 20:09:30', '2023-12-22 20:09:30'),
 (4, 2, 'event_photo_1703297387.jpg', '2023-12-22 20:09:47', '2023-12-22 20:09:47'),
 (5, 2, 'event_photo_1703297391.jpg', '2023-12-22 20:09:51', '2023-12-22 20:09:51'),
 (6, 2, 'event_photo_1703297399.jpg', '2023-12-22 20:09:59', '2023-12-22 20:09:59'),
@@ -311,7 +320,12 @@ INSERT INTO `event_photos` (`id`, `event_id`, `photo`, `created_at`, `updated_at
 (9, 4, 'event_photo_1703297414.jpg', '2023-12-22 20:10:14', '2023-12-22 20:10:14'),
 (10, 5, 'event_photo_1703297423.jpg', '2023-12-22 20:10:23', '2023-12-22 20:10:23'),
 (11, 5, 'event_photo_1703297427.jpg', '2023-12-22 20:10:27', '2023-12-22 20:10:27'),
-(12, 5, 'event_photo_1703297429.jpg', '2023-12-22 20:10:29', '2023-12-22 20:10:29');
+(12, 5, 'event_photo_1703297429.jpg', '2023-12-22 20:10:29', '2023-12-22 20:10:29'),
+(14, 7, 'event_photo_1720964087.jpg', '2024-07-14 13:34:47', '2024-07-14 13:34:47'),
+(16, 7, 'event_photo_1720964097.jpg', '2024-07-14 13:34:57', '2024-07-14 13:34:57'),
+(17, 7, 'event_photo_1720964104.jpg', '2024-07-14 13:35:04', '2024-07-14 13:35:04'),
+(18, 10, 'event_photo_1721384483.jpg', '2024-07-19 10:21:23', '2024-07-19 10:21:23'),
+(19, 10, 'event_photo_1721384488.jpg', '2024-07-19 10:21:28', '2024-07-19 10:21:28');
 
 -- --------------------------------------------------------
 
@@ -320,16 +334,16 @@ INSERT INTO `event_photos` (`id`, `event_id`, `photo`, `created_at`, `updated_at
 --
 
 CREATE TABLE `event_tickets` (
-  `id` bigint UNSIGNED NOT NULL,
-  `event_id` int NOT NULL,
-  `user_id` int NOT NULL,
-  `unit_price` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `number_of_tickets` int NOT NULL,
-  `total_price` int NOT NULL,
-  `currency` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `payment_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payment_method` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payment_status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `event_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `unit_price` varchar(255) NOT NULL,
+  `number_of_tickets` int(11) NOT NULL,
+  `total_price` int(11) NOT NULL,
+  `currency` varchar(255) DEFAULT NULL,
+  `payment_id` varchar(255) NOT NULL,
+  `payment_method` varchar(255) NOT NULL,
+  `payment_status` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -339,15 +353,8 @@ CREATE TABLE `event_tickets` (
 --
 
 INSERT INTO `event_tickets` (`id`, `event_id`, `user_id`, `unit_price`, `number_of_tickets`, `total_price`, `currency`, `payment_id`, `payment_method`, `payment_status`, `created_at`, `updated_at`) VALUES
-(2, 1, 1, '9', 3, 27, 'USD', '53P39821G9668651B', 'PayPal', 'COMPLETED', '2023-12-23 20:59:48', '2023-12-23 20:59:48'),
-(3, 1, 1, '9', 4, 36, 'USD', '018900973P749605S', 'PayPal', 'COMPLETED', '2023-12-24 09:06:23', '2023-12-24 09:06:23'),
-(4, 1, 1, '9', 2, 18, 'USD', '84G179354H581025S', 'PayPal', 'COMPLETED', '2023-12-24 09:11:26', '2023-12-24 09:11:26'),
-(5, 1, 1, '9', 1, 9, 'usd', 'cs_test_a19EhImC6QqSl6LXqLiKFrqqDvgjvjMX6tnQdZMSxquXX0rds4LdtFBkCK', 'Stripe', 'COMPLETED', '2023-12-25 05:46:43', '2023-12-25 05:46:43'),
-(6, 2, 1, '19', 5, 95, 'USD', '2X43291189611073R', 'PayPal', 'COMPLETED', '2023-12-25 06:12:43', '2023-12-25 06:12:43'),
-(13, 4, 1, '0', 4, 0, '', 'payment_no_1703507492', 'Free', 'COMPLETED', '2023-12-25 06:31:32', '2023-12-25 06:31:32'),
-(14, 4, 1, '0', 3, 0, '', 'payment_no_1703507497', 'Free', 'COMPLETED', '2023-12-25 06:31:37', '2023-12-25 06:31:37'),
-(15, 5, 1, '0', 3, 0, '', 'payment_no_1703507550', 'Free', 'COMPLETED', '2023-12-25 06:32:30', '2023-12-25 06:32:30'),
-(17, 2, 1, '19', 3, 57, 'USD', '65V71620RB9993153', 'PayPal', 'COMPLETED', '2023-12-25 06:36:40', '2023-12-25 06:36:40');
+(22, 10, 4, '5000', 5, 25000, 'IDR', 'event-669a98eebd401', 'qris', 'COMPLETED', '2024-07-19 16:49:17', '2024-07-19 16:49:17'),
+(23, 10, 9, '5000', 1, 5000, 'IDR', 'event-669cb829076cf', 'qris', 'COMPLETED', '2024-07-21 07:27:25', '2024-07-21 07:27:25');
 
 -- --------------------------------------------------------
 
@@ -356,9 +363,9 @@ INSERT INTO `event_tickets` (`id`, `event_id`, `user_id`, `unit_price`, `number_
 --
 
 CREATE TABLE `event_videos` (
-  `id` bigint UNSIGNED NOT NULL,
-  `event_id` int NOT NULL,
-  `youtube_video_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `event_id` int(11) NOT NULL,
+  `youtube_video_id` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -370,7 +377,6 @@ CREATE TABLE `event_videos` (
 INSERT INTO `event_videos` (`id`, `event_id`, `youtube_video_id`, `created_at`, `updated_at`) VALUES
 (1, 1, 'EGh1wY4CJl0', '2023-12-22 20:26:38', '2023-12-22 20:26:38'),
 (2, 1, 'ruZ9HgozGUU', '2023-12-22 20:27:37', '2023-12-22 20:27:37'),
-(3, 1, '5_kfZ7yEnPU', '2023-12-22 20:27:46', '2023-12-22 20:27:46'),
 (4, 2, 'mPRXhNFPgwo', '2023-12-22 20:28:31', '2023-12-22 20:28:31'),
 (5, 2, 'fxnd3O4YC6k', '2023-12-22 20:28:50', '2023-12-22 20:28:50'),
 (6, 2, 'RQu7jpcNUWI', '2023-12-22 20:28:55', '2023-12-22 20:28:55'),
@@ -379,7 +385,12 @@ INSERT INTO `event_videos` (`id`, `event_id`, `youtube_video_id`, `created_at`, 
 (9, 4, 'nEFCxs7SZsM', '2023-12-22 20:29:42', '2023-12-22 20:29:42'),
 (10, 5, 'bdBG5VO01e0', '2023-12-22 20:30:19', '2023-12-22 20:30:19'),
 (11, 5, 'aYVsy1pv-mo', '2023-12-22 20:30:26', '2023-12-22 20:30:26'),
-(12, 5, 'xHegpKx61eE', '2023-12-22 20:30:33', '2023-12-22 20:30:33');
+(12, 5, 'xHegpKx61eE', '2023-12-22 20:30:33', '2023-12-22 20:30:33'),
+(14, 7, 'ZuHRHv-_KXw', '2024-07-14 13:49:56', '2024-07-14 13:49:56'),
+(15, 7, 'YhviJ2EkZpA', '2024-07-14 13:51:08', '2024-07-14 13:51:08'),
+(16, 7, 'AHzG3AHSFW4', '2024-07-14 13:51:13', '2024-07-14 13:51:13'),
+(17, 10, '9gAE6Ebp0Is', '2024-07-19 10:21:53', '2024-07-19 10:21:53'),
+(18, 10, 'EmU6MML4vC4', '2024-07-19 10:22:25', '2024-07-19 10:22:25');
 
 -- --------------------------------------------------------
 
@@ -388,13 +399,13 @@ INSERT INTO `event_videos` (`id`, `event_id`, `youtube_video_id`, `created_at`, 
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint UNSIGNED NOT NULL,
-  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -404,9 +415,9 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `faqs` (
-  `id` bigint UNSIGNED NOT NULL,
-  `question` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `answer` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `question` varchar(255) NOT NULL,
+  `answer` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -416,11 +427,8 @@ CREATE TABLE `faqs` (
 --
 
 INSERT INTO `faqs` (`id`, `question`, `answer`, `created_at`, `updated_at`) VALUES
-(1, 'What is your charity\'s mission and focus?', 'Our charity\'s mission is to make a positive impact in the lives of those in need. We focus on providing support in areas such as education, healthcare, disaster relief, and addressing hunger and homelessness. We also raise awareness about critical social and environmental issues.', '2023-12-18 19:28:50', '2023-12-18 19:28:50'),
-(2, 'How can I make a donation to support your charity?', 'Making a donation to support our charity is easy and greatly appreciated. You can donate online through our secure website by clicking on the \"Donate Now\" button. We also accept donations through various other methods, such as bank transfers, checks, or in-kind contributions. Visit our \"Donate\" page for more details on the various donation options.', '2023-12-18 19:29:17', '2023-12-18 19:29:17'),
-(3, 'Is my donation tax-deductible, and will I receive a receipt for tax purposes?', 'Yes, your donation is tax-deductible to the extent allowed by law. After making a donation, you will receive a receipt via email or mail, depending on your preference. This receipt will contain all the necessary information you need for tax purposes, including our charity\'s tax ID number.', '2023-12-18 19:29:31', '2023-12-18 19:29:31'),
-(4, 'How can I get involved as a volunteer or participate in your charity\'s programs?', 'We welcome volunteers and individuals interested in participating in our programs. To get involved, please visit our \"Volunteer Opportunities\" page for information on upcoming events, projects, and how to apply. You can also sign up for our newsletter to stay informed about volunteer opportunities and programs.', '2023-12-18 19:29:44', '2023-12-18 19:29:44'),
-(5, 'Can I designate my donation to a specific program or project within your charity?', 'Yes, you can often designate your donation to a specific program, project, or cause that aligns with your passion and interests. During the donation process, you will have the option to specify where you\'d like your contribution to be directed. If you have questions about specific designations, please contact our support team for further assistance.', '2023-12-18 19:29:59', '2023-12-18 19:29:59');
+(1, 'Apa tujuan dan fokus utama Laskar Amal?', 'Tujuan Laskar Amal adalah memberikan dampak positif pada kehidupan mereka yang membutuhkan di sekitar Desa Titang. Kami fokus memberikan dukungan di berbagai bidang seperti pendidikan, layanan kesehatan, bantuan bencana, mengatasi kelaparan, dan lain-lain. Kami juga meningkatkan kesadaran tentang isu-isu sosial dan lingkungan yang penting.', '2023-12-18 19:28:50', '2024-06-20 05:29:15'),
+(2, 'Bagaimana cara melakukan donasi?', 'Donasi untuk mendukung amal kami sangat mudah dan dihargai. Anda bisa berdonasi secara online melalui situs web kami yang aman dengan mengklik tombol \"Donasi Sekarang\". Kami juga menerima donasi melalui transfer bank, QRIS, dan lainnya. Kunjungi halaman \"Donasi\" kami untuk informasi lebih lanjut tentang berbagai metode donasi.', '2023-12-18 19:29:17', '2024-06-20 05:32:01');
 
 -- --------------------------------------------------------
 
@@ -429,10 +437,10 @@ INSERT INTO `faqs` (`id`, `question`, `answer`, `created_at`, `updated_at`) VALU
 --
 
 CREATE TABLE `features` (
-  `id` bigint UNSIGNED NOT NULL,
-  `icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `heading` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `icon` varchar(255) NOT NULL,
+  `heading` varchar(255) NOT NULL,
+  `text` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -442,9 +450,9 @@ CREATE TABLE `features` (
 --
 
 INSERT INTO `features` (`id`, `icon`, `heading`, `text`, `created_at`, `updated_at`) VALUES
-(1, 'fas fa-briefcase', 'Become a Volunteer', 'In order to become a volunteer, you need to fill out the form and send us. We will review your form and contact you.', '2023-12-17 19:36:20', '2023-12-17 20:21:07'),
-(2, 'fas fa-search', 'Foundation & Events', 'We organize many events for fund raising. You can also organize events and help us to raise fund for the poor people.', '2023-12-17 19:37:35', '2023-12-17 19:37:35'),
-(3, 'fas fa-share-alt', 'Make a Donation', 'You can also donate us. We will use your donation to help the poor people. You can donate us by PayPal or Stripe.', '2023-12-17 19:37:59', '2023-12-17 19:37:59');
+(1, 'fas fa-money-bill', 'Beragam Metode Pembayaran', 'Memberikan fleksibilitas dan kenyamanan dengan menyediakan berbagai opsi pembayaran yang sesuai dengan preferensi donatur.', '2023-12-17 19:36:20', '2024-07-18 16:40:58'),
+(2, 'fas fa-search', 'Events', 'Menginformasikan pengunjung tentang acara mendatang dan mengundang untuk berpartisipasi.', '2023-12-17 19:37:35', '2024-07-18 16:41:24'),
+(3, 'fas fa-share-alt', 'Berdonasi', 'Memfasilitasi proses donasi dengan cara yang mudah dan aman bagi para donatur.', '2023-12-17 19:37:59', '2024-07-18 16:41:10');
 
 -- --------------------------------------------------------
 
@@ -453,21 +461,21 @@ INSERT INTO `features` (`id`, `icon`, `heading`, `text`, `created_at`, `updated_
 --
 
 CREATE TABLE `home_page_items` (
-  `id` bigint UNSIGNED NOT NULL,
-  `cause_heading` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cause_subheading` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cause_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `feature_background` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `feature_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `event_heading` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `event_subheading` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `event_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `testimonial_heading` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `testimonial_background` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `testimonial_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `blog_heading` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `blog_subheading` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `blog_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `cause_heading` varchar(255) DEFAULT NULL,
+  `cause_subheading` varchar(255) DEFAULT NULL,
+  `cause_status` varchar(255) NOT NULL,
+  `feature_background` varchar(255) NOT NULL,
+  `feature_status` varchar(255) NOT NULL,
+  `event_heading` varchar(255) DEFAULT NULL,
+  `event_subheading` varchar(255) DEFAULT NULL,
+  `event_status` varchar(255) NOT NULL,
+  `testimonial_heading` varchar(255) DEFAULT NULL,
+  `testimonial_background` varchar(255) NOT NULL,
+  `testimonial_status` varchar(255) NOT NULL,
+  `blog_heading` varchar(255) DEFAULT NULL,
+  `blog_subheading` varchar(255) DEFAULT NULL,
+  `blog_status` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -477,7 +485,7 @@ CREATE TABLE `home_page_items` (
 --
 
 INSERT INTO `home_page_items` (`id`, `cause_heading`, `cause_subheading`, `cause_status`, `feature_background`, `feature_status`, `event_heading`, `event_subheading`, `event_status`, `testimonial_heading`, `testimonial_background`, `testimonial_status`, `blog_heading`, `blog_subheading`, `blog_status`, `created_at`, `updated_at`) VALUES
-(1, 'Featured Causes', 'Our organization focuses on providing services to the homeless peoples.', 'Show', 'feature_background_1704118837.jpg', 'Show', 'Upcoming Events', 'You can organize events and help us to raise fund for the poor people.', 'Show', 'Our Happy Clients', 'testimonial_background_1704118881.jpg', 'Show', 'Latest News', 'Check out the latest news and updates from our blog post', 'Show', NULL, '2024-01-01 19:09:08');
+(1, 'Donasi Unggulan', 'Bantulah mereka yang membutuhkan dengan Berdonasi.', 'Show', 'feature_background_1704118837.jpg', 'Show', 'Event Mendatang', 'Anda dapat mengatur acara dan membantu kami dalam menciptakan pengalaman yang tak terlupakan.', 'Show', 'Apa kata mereka?', 'testimonial_background_1704118881.jpg', 'Hide', 'Berita Terbaru', 'Lihat berita dan pembaruan terkini dari postingan blog kami.', 'Show', NULL, '2024-07-14 15:28:16');
 
 -- --------------------------------------------------------
 
@@ -486,9 +494,9 @@ INSERT INTO `home_page_items` (`id`, `cause_heading`, `cause_subheading`, `cause
 --
 
 CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) NOT NULL,
+  `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -539,9 +547,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `other_page_items` (
-  `id` bigint UNSIGNED NOT NULL,
-  `terms_content` text COLLATE utf8mb4_unicode_ci,
-  `privacy_content` text COLLATE utf8mb4_unicode_ci,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `terms_content` text DEFAULT NULL,
+  `privacy_content` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -560,10 +568,17 @@ INSERT INTO `other_page_items` (`id`, `terms_content`, `privacy_content`, `creat
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `password_reset_tokens`
+--
+
+INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
+('budi@gmail.com', '$2y$10$tCOQ2VZFv/jIpv4I.dn5ROHVqyhO7OldUFiff/eXoOAmDoLZwAPn6', '2024-07-03 15:59:26');
 
 -- --------------------------------------------------------
 
@@ -572,12 +587,12 @@ CREATE TABLE `password_reset_tokens` (
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -591,9 +606,9 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `photos` (
-  `id` bigint UNSIGNED NOT NULL,
-  `photo_category_id` int NOT NULL,
-  `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `photo_category_id` int(11) NOT NULL,
+  `photo` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -623,8 +638,8 @@ INSERT INTO `photos` (`id`, `photo_category_id`, `photo`, `created_at`, `updated
 --
 
 CREATE TABLE `photo_categories` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -634,8 +649,8 @@ CREATE TABLE `photo_categories` (
 --
 
 INSERT INTO `photo_categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'University Event', '2023-12-19 03:02:29', '2023-12-19 03:02:29'),
-(2, 'School Event', '2023-12-19 03:02:49', '2023-12-19 03:02:49');
+(1, 'Pendidikan dan Pelatihan', '2023-12-19 03:02:29', '2024-06-22 03:21:45'),
+(2, 'Kesehatan dan Kebersihan', '2023-12-19 03:02:49', '2024-06-22 03:21:59');
 
 -- --------------------------------------------------------
 
@@ -644,14 +659,14 @@ INSERT INTO `photo_categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `posts` (
-  `id` bigint UNSIGNED NOT NULL,
-  `post_category_id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `short_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tags` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `post_category_id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `short_description` text NOT NULL,
+  `description` text NOT NULL,
+  `photo` varchar(255) NOT NULL,
+  `tags` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -661,12 +676,9 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `post_category_id`, `title`, `slug`, `short_description`, `description`, `photo`, `tags`, `created_at`, `updated_at`) VALUES
-(1, 3, 'Education Material for the Poor Children', 'education-material-poor-children', 'Lorem ipsum dolor sit amet, no unum senserit constituam has, has an enim recusabo, dolorum consequuntur ad quo.', '<p>Lorem ipsum dolor sit amet, no unum senserit constituam has, has an enim recusabo, dolorum consequuntur ad quo. Nisl nonumes ea eam, at pro eleifend partiendo, alii summo ex nam. Eam impetus efficiantur ullamcorper no, ad est meliore patrioque sententiae, no eam atqui possit. An iriure meliore maiorum sed, quo an altera numquam. Nam eu commodo persecuti. Eu eos tibique delectus disputando, ei purto wisi euripidis mei, vis augue electram iudicabit ea.<br /><br />Eum id legimus rationibus, aeque eligendi ullamcorper mel et. Habeo officiis id usu, eu intellegat voluptatum definiebas nec, cu his error solet voluptua. Nec in wisi labore expetendis. His hinc verear ne, pri dignissim sententiae percipitur no, mel mollis ceteros gubergren in.<br /><br />Cu cum tota summo vulputate, ullum recusabo neglegentur per ex. Velit deleniti facilisi an usu, vim ludus prompta probatus ne. Ad eum ferri liber, sea no virtute facilisi. Id ius dico consectetuer. Te animal facilisis his, est ipsum putent te.</p>', 'post_1703043634.jpg', 'child,school,poor', '2023-12-19 21:12:51', '2023-12-20 02:18:20'),
-(5, 3, 'Partnering to create a strong community', 'partnering-create-strong-community', 'Lorem ipsum dolor sit amet, no unum senserit constituam has, has an enim recusabo, dolorum consequuntur ad quo.', '<p>Lorem ipsum dolor sit amet, no unum senserit constituam has, has an enim recusabo, dolorum consequuntur ad quo. Nisl nonumes ea eam, at pro eleifend partiendo, alii summo ex nam. Eam impetus efficiantur ullamcorper no, ad est meliore patrioque sententiae, no eam atqui possit. An iriure meliore maiorum sed, quo an altera numquam. Nam eu commodo persecuti. Eu eos tibique delectus disputando, ei purto wisi euripidis mei, vis augue electram iudicabit ea.<br /><br />Eum id legimus rationibus, aeque eligendi ullamcorper mel et. Habeo officiis id usu, eu intellegat voluptatum definiebas nec, cu his error solet voluptua. Nec in wisi labore expetendis. His hinc verear ne, pri dignissim sententiae percipitur no, mel mollis ceteros gubergren in.<br /><br />Cu cum tota summo vulputate, ullum recusabo neglegentur per ex. Velit deleniti facilisi an usu, vim ludus prompta probatus ne. Ad eum ferri liber, sea no virtute facilisi. Id ius dico consectetuer. Te animal facilisis his, est ipsum putent te.</p>', 'post_1703059910.jpg', 'education,school,charity,city', '2023-12-20 02:11:50', '2023-12-20 04:09:05'),
-(6, 5, 'Turning your emergency donation into instant aid', 'turning-emergency-donation-into-instant-aid', 'Lorem ipsum dolor sit amet, no unum senserit constituam has, has an enim recusabo, dolorum consequuntur ad quo.', '<p>Lorem ipsum dolor sit amet, no unum senserit constituam has, has an enim recusabo, dolorum consequuntur ad quo. Nisl nonumes ea eam, at pro eleifend partiendo, alii summo ex nam. Eam impetus efficiantur ullamcorper no, ad est meliore patrioque sententiae, no eam atqui possit. An iriure meliore maiorum sed, quo an altera numquam. Nam eu commodo persecuti. Eu eos tibique delectus disputando, ei purto wisi euripidis mei, vis augue electram iudicabit ea.<br /><br />Eum id legimus rationibus, aeque eligendi ullamcorper mel et. Habeo officiis id usu, eu intellegat voluptatum definiebas nec, cu his error solet voluptua. Nec in wisi labore expetendis. His hinc verear ne, pri dignissim sententiae percipitur no, mel mollis ceteros gubergren in.<br /><br />Cu cum tota summo vulputate, ullum recusabo neglegentur per ex. Velit deleniti facilisi an usu, vim ludus prompta probatus ne. Ad eum ferri liber, sea no virtute facilisi. Id ius dico consectetuer. Te animal facilisis his, est ipsum putent te.</p>', 'post_1703059968.jpg', 'fund,education,school', '2023-12-20 02:12:48', '2023-12-20 02:18:31'),
-(7, 2, 'Charity provides educational boost for children', 'charity-provides-educational-boost-for-children', 'Lorem ipsum dolor sit amet, no unum senserit constituam has, has an enim recusabo, dolorum consequuntur ad quo.', '<p>Lorem ipsum dolor sit amet, no unum senserit constituam has, has an enim recusabo, dolorum consequuntur ad quo. Nisl nonumes ea eam, at pro eleifend partiendo, alii summo ex nam. Eam impetus efficiantur ullamcorper no, ad est meliore patrioque sententiae, no eam atqui possit. An iriure meliore maiorum sed, quo an altera numquam. Nam eu commodo persecuti. Eu eos tibique delectus disputando, ei purto wisi euripidis mei, vis augue electram iudicabit ea.<br /><br />Eum id legimus rationibus, aeque eligendi ullamcorper mel et. Habeo officiis id usu, eu intellegat voluptatum definiebas nec, cu his error solet voluptua. Nec in wisi labore expetendis. His hinc verear ne, pri dignissim sententiae percipitur no, mel mollis ceteros gubergren in.<br /><br />Cu cum tota summo vulputate, ullum recusabo neglegentur per ex. Velit deleniti facilisi an usu, vim ludus prompta probatus ne. Ad eum ferri liber, sea no virtute facilisi. Id ius dico consectetuer. Te animal facilisis his, est ipsum putent te.</p>', 'post_1703060022.jpg', 'charity,school,children', '2023-12-20 02:13:42', '2023-12-20 04:09:48'),
-(8, 4, 'Directly Support Individuals for the Charity', 'directly-support-individuals', 'Lorem ipsum dolor sit amet, no unum senserit constituam has, has an enim recusabo, dolorum consequuntur ad quo.', '<p>Lorem ipsum dolor sit amet, no unum senserit constituam has, has an enim recusabo, dolorum consequuntur ad quo. Nisl nonumes ea eam, at pro eleifend partiendo, alii summo ex nam. Eam impetus efficiantur ullamcorper no, ad est meliore patrioque sententiae, no eam atqui possit. An iriure meliore maiorum sed, quo an altera numquam. Nam eu commodo persecuti. Eu eos tibique delectus disputando, ei purto wisi euripidis mei, vis augue electram iudicabit ea.<br /><br />Eum id legimus rationibus, aeque eligendi ullamcorper mel et. Habeo officiis id usu, eu intellegat voluptatum definiebas nec, cu his error solet voluptua. Nec in wisi labore expetendis. His hinc verear ne, pri dignissim sententiae percipitur no, mel mollis ceteros gubergren in.<br /><br />Cu cum tota summo vulputate, ullum recusabo neglegentur per ex. Velit deleniti facilisi an usu, vim ludus prompta probatus ne. Ad eum ferri liber, sea no virtute facilisi. Id ius dico consectetuer. Te animal facilisis his, est ipsum putent te.</p>', 'post_1703060068.jpg', 'health,doctor,education,child', '2023-12-20 02:14:28', '2023-12-20 02:19:03'),
-(9, 1, 'Poor Children Education Facility in City', 'poor-children-education-facility-in-city', 'Lorem ipsum dolor sit amet, no unum senserit constituam has, has an enim recusabo, dolorum consequuntur ad quo.', '<p>Lorem ipsum dolor sit amet, no unum senserit constituam has, has an enim recusabo, dolorum consequuntur ad quo. Nisl nonumes ea eam, at pro eleifend partiendo, alii summo ex nam. Eam impetus efficiantur ullamcorper no, ad est meliore patrioque sententiae, no eam atqui possit. An iriure meliore maiorum sed, quo an altera numquam. Nam eu commodo persecuti. Eu eos tibique delectus disputando, ei purto wisi euripidis mei, vis augue electram iudicabit ea.<br /><br />Eum id legimus rationibus, aeque eligendi ullamcorper mel et. Habeo officiis id usu, eu intellegat voluptatum definiebas nec, cu his error solet voluptua. Nec in wisi labore expetendis. His hinc verear ne, pri dignissim sententiae percipitur no, mel mollis ceteros gubergren in.<br /><br />Cu cum tota summo vulputate, ullum recusabo neglegentur per ex. Velit deleniti facilisi an usu, vim ludus prompta probatus ne. Ad eum ferri liber, sea no virtute facilisi. Id ius dico consectetuer. Te animal facilisis his, est ipsum putent te.</p>', 'post_1703060129.jpg', 'charity,learning,education,school,child', '2023-12-20 02:15:29', '2023-12-20 04:09:57');
+(1, 3, 'Materi pendidikan tentang kemanusiaan untuk anak usia dini', 'materi-pendidikan-tentang-kemanusiaan-untuk-anak-usia-dini', 'Materi pendidikan tentang kemanusiaan untuk anak usia dini mengajarkan nilai-nilai empati, kerjasama, toleransi, dan rasa hormat melalui kegiatan cerita, permainan kelompok, pengenalan budaya, dan alat bantu visual serta praktis, untuk membentuk karakter yang peduli dan bertanggung jawab.', '<p>Pendidikan kemanusiaan adalah elemen penting yang sebaiknya diajarkan sejak dini kepada anak-anak. Memahami nilai-nilai kemanusiaan seperti empati, kerjasama, toleransi, dan rasa hormat terhadap orang lain dapat membentuk karakter anak menjadi pribadi yang peduli dan bertanggung jawab. Materi pendidikan tentang kemanusiaan untuk anak usia dini harus dirancang dengan cara yang menarik dan sesuai dengan tahapan perkembangan mereka.</p>\r\n<h2>Mengajarkan Empati</h2>\r\n<p>Empati adalah kemampuan untuk merasakan dan memahami perasaan orang lain. Mengajarkan empati kepada anak-anak bisa dimulai dengan kegiatan sederhana seperti mendengarkan cerita dan meminta mereka menggambarkan perasaan tokoh dalam cerita tersebut. Melalui diskusi ini, anak-anak diajak untuk memikirkan bagaimana perasaan orang lain dalam situasi tertentu dan bagaimana mereka bisa membantu.</p>\r\n<h2>Pentingnya Kerjasama</h2>\r\n<p>Kerjasama adalah keterampilan sosial yang sangat penting. Anak-anak usia dini dapat belajar kerjasama melalui permainan kelompok yang membutuhkan kerjasama untuk mencapai tujuan. Kegiatan seperti membangun sesuatu bersama atau bermain permainan tim dapat mengajarkan pentingnya bekerja sama, saling mendengarkan, dan berbagi tugas.</p>\r\n<h2>Menanamkan Nilai Toleransi</h2>\r\n<p>Toleransi adalah penerimaan dan penghargaan terhadap perbedaan. Anak-anak perlu diajarkan bahwa setiap orang unik dan perbedaan tersebut adalah sesuatu yang harus dihormati. Kegiatan seperti memperkenalkan berbagai budaya, bahasa, dan tradisi melalui cerita, lagu, dan seni dapat membantu anak-anak memahami dan menghargai keberagaman.</p>\r\n<h2>Rasa Hormat Terhadap Orang Lain</h2>\r\n<p>Menghormati orang lain adalah fondasi dari hubungan yang baik. Anak-anak dapat belajar tentang rasa hormat dengan cara diajarkan untuk menggunakan kata-kata yang sopan, mendengarkan saat orang lain berbicara, dan menghargai hak-hak orang lain. Guru dan orang tua dapat menjadi teladan dengan menunjukkan sikap hormat dalam interaksi sehari-hari.</p>\r\n<h2>Menggunakan Alat Bantu Visual dan Praktis</h2>\r\n<p>Materi pendidikan tentang kemanusiaan untuk anak usia dini sebaiknya dilengkapi dengan alat bantu visual dan praktis. Buku cerita bergambar, video edukatif, dan permainan interaktif dapat membuat pembelajaran lebih menarik dan mudah dipahami oleh anak-anak. Kegiatan seni seperti menggambar dan membuat kerajinan tangan juga dapat digunakan untuk memperkuat konsep-konsep kemanusiaan yang diajarkan.</p>\r\n<h2>Kesimpulan</h2>\r\n<p>Mengajarkan nilai-nilai kemanusiaan kepada anak usia dini adalah investasi penting untuk masa depan mereka. Dengan mempelajari empati, kerjasama, toleransi, dan rasa hormat, anak-anak dapat tumbuh menjadi individu yang peduli dan bertanggung jawab. Materi pendidikan yang menarik dan sesuai dengan perkembangan mereka akan membuat pembelajaran ini lebih efektif dan menyenangkan. Melalui pendidikan kemanusiaan, kita dapat membentuk generasi yang lebih baik, yang siap untuk hidup harmonis dalam masyarakat yang beragam.</p>\r\n<div id=\"gtx-trans\" style=\"position: absolute; left: -15px; top: 774.325px;\">\r\n<div class=\"gtx-trans-icon\">&nbsp;</div>\r\n</div>', 'post_1721361551.jpg', 'pendidikan,anak-anak,edukasi', '2024-05-19 21:12:51', '2024-07-19 03:59:11'),
+(6, 8, 'Bantu Warga yang Membutuhkan', 'bantu-warga-yang-membutuhkan', 'Semangat solidaritas desa melalui berbagai inisiatif amal dan program pemberdayaan masyarakat untuk membangun masa depan yang lebih baik bersama.', '<p>Di tengah kehidupan sehari-hari di Desa Titang, solidaritas sosial memainkan peran krusial dalam membangun sebuah komunitas yang kuat dan berdaya. Setiap individu dan keluarga memiliki cerita dan tantangan mereka sendiri, namun kekuatan bersama untuk saling mendukung dapat membawa perubahan yang luar biasa.</p>\r\n<p>Desa Titang, seperti banyak komunitas lainnya, tidak terlepas dari berbagai tantangan ekonomi dan sosial. Namun, di tengah tantangan itu, ada cahaya harapan yang terpancar dari upaya-upaya nyata untuk membantu sesama. Inisiatif-amal lokal telah tumbuh dan berkembang, membawa inspirasi dan harapan bagi warga yang membutuhkan.</p>\r\n<p>Salah satu bentuk dukungan yang nyata adalah melalui upaya penggalangan dana. Organisasi Desa Titang telah merespons dengan antusiasme, menyelenggarakan acara-acara amal dan kampanye online untuk mengumpulkan dana bagi keluarga-keluarga yang sedang berjuang. Setiap sumbangan, baik besar maupun kecil, memiliki dampak yang signifikan dalam membantu memenuhi kebutuhan sehari-hari dan mendukung perkembangan ekonomi di tingkat lokal.</p>\r\n<p>Namun, bantuan tidak hanya datang dalam bentuk uang. Banyak warga Desa Titang juga terlibat dalam kegiatan atau events sukarela yang beragam, mulai dari memberikan waktu mereka untuk mengajar anak-anak di sekolah setempat hingga menyumbangkan barang-barang pribadi untuk mereka yang membutuhkan. Semangat gotong-royong dan kepedulian ini tidak hanya memperkuat jaringan sosial dalam komunitas, tetapi juga membangun rasa persatuan yang kuat di antara tetangga-tetangga.</p>\r\n<p>Selain itu, proyek-proyek pemberdayaan masyarakat juga menjadi bagian penting dari perubahan yang sedang terjadi. Program pelatihan keterampilan, seperti pertanian urban dan kerajinan tangan tradisional, tidak hanya meningkatkan pendapatan keluarga tetapi juga menghidupkan kembali warisan budaya lokal yang berharga. Inisiatif-inisiatif ini tidak hanya memberi warga Desa Titang sumber penghasilan tambahan, tetapi juga membangkitkan kebanggaan akan identitas lokal mereka sendiri.</p>\r\n<p>Dalam konteks yang lebih luas, semangat dan dedikasi ini bukan hanya memperkuat ketahanan komunitas terhadap tantangan eksternal, tetapi juga membawa harapan baru bagi masa depan yang lebih cerah. Desa Titang menunjukkan bahwa ketika kita bersatu sebagai satu, kita dapat menciptakan perubahan yang positif dan berkelanjutan.</p>\r\n<p>Mari kita terus menginspirasi satu sama lain untuk berbuat lebih banyak lagi. Dengan menjaga semangat gotong-royong dan menguatkan jaringan sosial, kita tidak hanya membangun sebuah desa yang kuat, tetapi juga mendorong perubahan positif yang berdampak luas bagi kita semua.</p>\r\n<p>Dalam spirit kebersamaan, mari kita lanjutkan upaya untuk membantu warga yang membutuhkan di Desa Titang dan di seluruh dunia.</p>', 'post_1721305680.jpg', 'organisasi,gotong-royong,sosial', '2024-05-20 02:12:48', '2024-07-18 12:28:00'),
+(12, 2, 'Mengapa Amal Penting dalam Kehidupan Kita?', 'mengapa-amal-penting-dalam-kehidupan-kita', 'Menggali pentingnya amal dalam kehidupan sehari-hari, menyuarakan nilai-nilai kemanusiaan, dan mengilhami pembaca untuk bertindak dengan kebaikan dan empati dalam interaksi mereka dengan sesama.', '<p>Amal merupakan inti dari banyak nilai-nilai kemanusiaan yang dijunjung tinggi di seluruh dunia. Banyak orang berpikir bahwa amal hanya sebatas memberikan bantuan finansial atau materi kepada yang membutuhkan, tetapi sebenarnya, konsep amal mencakup lebih dari itu. Amal mencerminkan kedermawanan, empati, dan kepedulian kita terhadap sesama manusia dan lingkungan sekitar. Saat kita melakukan amal, kita tidak hanya memberikan manfaat langsung kepada penerima, tetapi juga memberi inspirasi kepada orang lain untuk melakukan hal baik yang sama. Setiap tindakan amal, sekecil apapun, memiliki potensi untuk merubah dunia menjadi tempat yang lebih baik.</p>\r\n<p>Dalam kehidupan sehari-hari, kita sering kali terjebak dalam rutinitas yang padat, tetapi menemukan waktu untuk melakukan amal dapat membuka mata kita terhadap kebutuhan orang lain di sekitar kita. Amal tidak selalu harus berupa sumbangan besar; menghabiskan waktu dengan orang yang kesepian, memberikan senyuman kepada orang asing, atau berbagi pengetahuan kepada mereka yang membutuhkan juga merupakan bentuk amal yang bernilai. Dengan melibatkan diri dalam tindakan-tindakan ini, kita tidak hanya memperkuat ikatan sosial dalam masyarakat tetapi juga membangun fondasi empati yang kuat di antara sesama manusia.</p>\r\n<p>Amal juga memiliki dampak positif yang signifikan terhadap kesehatan mental dan emosional kita. Ketika kita membantu orang lain, kita merasakan perasaan kepuasan dan kebahagiaan yang mendalam. Ini bukan hanya karena kita merasa berkontribusi pada kebaikan umum, tetapi juga karena tindakan amal mengubah perspektif kita terhadap kehidupan. Melalui pengalaman ini, kita belajar menghargai apa yang kita miliki dan merasa terhubung dengan komunitas yang lebih besar.</p>\r\n<p>Dalam dunia yang sering kali dipenuhi dengan ketegangan dan perbedaan, amal memainkan peran penting dalam membangun jembatan antarindividu dan masyarakat. Ini adalah panggilan universal untuk bertindak dengan belas kasihan dan kebaikan, tidak peduli seberapa kecil pun dampaknya terlihat. Dengan melakukan amal, kita berinvestasi dalam masa depan yang lebih baik, di mana nilai-nilai ini diteruskan dari generasi ke generasi, menjadikan dunia ini tempat yang lebih berempati dan inklusif bagi semua.</p>', 'post_1721392812.jpg', 'amal,sosial,kemanusiaan', '2024-07-19 12:40:12', '2024-07-19 12:40:12');
 
 -- --------------------------------------------------------
 
@@ -675,9 +687,9 @@ INSERT INTO `posts` (`id`, `post_category_id`, `title`, `slug`, `short_descripti
 --
 
 CREATE TABLE `post_categories` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -687,11 +699,12 @@ CREATE TABLE `post_categories` (
 --
 
 INSERT INTO `post_categories` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
-(1, 'Donation', 'donation', '2023-12-19 19:16:54', '2023-12-20 03:43:27'),
-(2, 'Charity', 'charity', '2023-12-19 19:17:03', '2023-12-20 03:43:31'),
-(3, 'Education', 'education', '2023-12-19 19:17:07', '2023-12-20 03:44:24'),
-(4, 'Health', 'health', '2023-12-19 19:17:15', '2023-12-20 03:44:31'),
-(5, 'Fundraising', 'fundraising', '2023-12-19 19:17:23', '2023-12-20 03:44:35');
+(1, 'Donasi', 'donation', '2023-12-19 19:16:54', '2024-06-23 09:34:10'),
+(2, 'Amal', 'charity', '2023-12-19 19:17:03', '2024-06-23 09:34:26'),
+(3, 'Pendidikan', 'education', '2023-12-19 19:17:07', '2024-06-23 09:34:59'),
+(4, 'Kesehatan', 'health', '2023-12-19 19:17:15', '2024-06-23 09:35:08'),
+(5, 'Penggalangan Dana', 'fundraising', '2023-12-19 19:17:23', '2024-06-23 09:36:00'),
+(8, 'Sosial', 'social', '2024-07-18 12:24:43', '2024-07-18 12:45:36');
 
 -- --------------------------------------------------------
 
@@ -700,13 +713,13 @@ INSERT INTO `post_categories` (`id`, `name`, `slug`, `created_at`, `updated_at`)
 --
 
 CREATE TABLE `replies` (
-  `id` bigint UNSIGNED NOT NULL,
-  `reply` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `comment_id` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `reply` text NOT NULL,
+  `comment_id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `user_type` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'pending',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -716,10 +729,10 @@ CREATE TABLE `replies` (
 --
 
 INSERT INTO `replies` (`id`, `reply`, `comment_id`, `name`, `email`, `user_type`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'Yes, I agree, this is a nice website.', 5, 'David', 'david@gmail.com', 'Visitor', 'Active', '2023-12-20 06:33:30', '2023-12-20 06:34:30'),
-(3, 'I also want a same website like this.', 6, 'Pat Flynn', 'pay_flynn@gmail.com', 'Visitor', 'Active', '2023-12-20 06:34:09', '2023-12-20 06:34:30'),
-(4, 'Yes, Excellent item!', 5, 'Brent Grundy', 'brent@gmail.com', 'Visitor', 'Active', '2023-12-20 06:45:28', '2023-12-20 06:45:37'),
-(6, 'Thank you everyone!', 5, NULL, NULL, 'Admin', 'Active', '2023-12-20 07:40:23', '2023-12-20 07:40:23');
+(8, 'nice, mantap bang', 8, NULL, NULL, 'Admin', 'Active', '2024-06-24 00:35:45', '2024-06-24 00:35:45'),
+(9, 'test reply', 9, NULL, NULL, 'Admin', 'Active', '2024-06-24 00:35:54', '2024-07-19 17:34:10'),
+(14, 'Udah di edit kak 🤭', 11, NULL, NULL, 'Admin', 'Active', '2024-07-19 10:35:41', '2024-07-19 10:35:41'),
+(15, 'Ahh, yang bener kamu samsudin', 11, 'Smithy Werben', 'smith@gmail.com', 'Visitor', 'Active', '2024-07-19 17:32:11', '2024-07-19 17:37:02');
 
 -- --------------------------------------------------------
 
@@ -728,27 +741,27 @@ INSERT INTO `replies` (`id`, `reply`, `comment_id`, `name`, `email`, `user_type`
 --
 
 CREATE TABLE `settings` (
-  `id` bigint UNSIGNED NOT NULL,
-  `logo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `favicon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `banner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `top_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `top_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cta_heading` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cta_text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `cta_button_text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cta_button_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `cta_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `footer_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `footer_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `footer_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `copyright` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `map` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `facebook` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `twitter` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `youtube` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tiktok` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `instagram` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `logo` varchar(255) NOT NULL,
+  `favicon` varchar(255) NOT NULL,
+  `banner` varchar(255) NOT NULL,
+  `top_phone` varchar(255) DEFAULT NULL,
+  `top_email` varchar(255) DEFAULT NULL,
+  `cta_heading` varchar(255) DEFAULT NULL,
+  `cta_text` text DEFAULT NULL,
+  `cta_button_text` varchar(255) DEFAULT NULL,
+  `cta_button_url` varchar(255) DEFAULT NULL,
+  `cta_status` varchar(255) NOT NULL,
+  `footer_address` varchar(255) DEFAULT NULL,
+  `footer_phone` varchar(255) DEFAULT NULL,
+  `footer_email` varchar(255) DEFAULT NULL,
+  `copyright` varchar(255) NOT NULL,
+  `map` text DEFAULT NULL,
+  `facebook` varchar(255) DEFAULT NULL,
+  `twitter` varchar(255) DEFAULT NULL,
+  `youtube` varchar(255) DEFAULT NULL,
+  `tiktok` varchar(255) DEFAULT NULL,
+  `instagram` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -758,7 +771,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `logo`, `favicon`, `banner`, `top_phone`, `top_email`, `cta_heading`, `cta_text`, `cta_button_text`, `cta_button_url`, `cta_status`, `footer_address`, `footer_phone`, `footer_email`, `copyright`, `map`, `facebook`, `twitter`, `youtube`, `tiktok`, `instagram`, `created_at`, `updated_at`) VALUES
-(1, 'logo_1704244791.png', 'favicon_1704244725.png', 'banner_1704244961.jpg', '111-222-3333', 'contact@example.com', 'Become Donate Partner', 'Help the individuals giving financing support and providing food', 'Contact Us', '#', 'Show', '34 Antiger Lane, USA, 12937', '122-222-1212', 'contact@example.com', 'Copyright © 2023, CharityBig. All Rights Reserved.', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387190.2799198932!2d-74.25987701513004!3d40.69767006272707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1645362221879!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border: 0\" allowfullscreen=\"\" loading=\"lazy\"></iframe>', '#', '#', '#', '#', '#', NULL, '2024-01-02 19:51:44');
+(1, 'logo_1721049809.png', 'favicon_1704244725.png', 'banner_1721361942.jpg', '+6281-2345-6789', 'contact@example.com', 'Menjadi Mitra Donasi', 'Bergabunglah sebagai mitra donasi dan jadilah bagian dari perubahan yang berarti.', 'Kontak Kami', '#', 'Show', 'Titang, Jogonalan, Klaten', '+6281-2345-6789', 'contact@example.com', 'Copyright © 2024, LaskarAmal. All Rights Reserved.', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7906.726802739489!2d110.53701309036764!3d-7.751225519070365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a4523a2d1ef59%3A0x1c90c4706ec80a23!2sBalai%20Desa%20Titang!5e0!3m2!1sen!2sid!4v1720963169326!5m2!1sen!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', '#', '#', '#', '#', '#', NULL, '2024-07-19 12:55:50');
 
 -- --------------------------------------------------------
 
@@ -767,12 +780,12 @@ INSERT INTO `settings` (`id`, `logo`, `favicon`, `banner`, `top_phone`, `top_ema
 --
 
 CREATE TABLE `sliders` (
-  `id` bigint UNSIGNED NOT NULL,
-  `heading` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `button_text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `button_link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `heading` varchar(255) NOT NULL,
+  `text` text NOT NULL,
+  `photo` varchar(255) NOT NULL,
+  `button_text` varchar(255) DEFAULT NULL,
+  `button_link` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -782,8 +795,8 @@ CREATE TABLE `sliders` (
 --
 
 INSERT INTO `sliders` (`id`, `heading`, `text`, `photo`, `button_text`, `button_link`, `created_at`, `updated_at`) VALUES
-(1, 'Help the Child in need', '<p>We should support kids who are having a tough time. It\'s about being kind and giving a hand to children facing problems like being poor, sick, or in trouble. When we help, we show them that they\'re not alone and that things can get better.</p>\r\n<p>&nbsp;</p>', '1698671272.jpg', 'Read More', '#', '2023-10-30 02:56:01', '2023-10-30 07:08:20'),
-(2, 'Fight for right causes', '<p>We work hard to support and raise awareness for important issues that need attention and action. Our goal is to make the world a better place by advocating for justice, equality, and positive change. Your support and involvement can help a lot.</p>\r\n<p>&nbsp;</p>', '1698671262.jpg', 'Read More', '#', '2023-10-30 02:57:39', '2023-10-30 07:08:28');
+(1, 'Bantu warga yang membutuhkan yaa!', '<p>Mengilustrasikan semangat solidaritas di desa melalui berbagai inisiatif amal dan program pemberdayaan masyarakat untuk membangun masa depan yang lebih baik bersama.</p>', '1698671272.jpg', 'Selengkapnya', '#', '2023-10-30 02:56:01', '2024-07-23 12:02:09'),
+(2, 'Berjuang untuk satu tujuan', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus laoreet non curabitur gravida arcu ac tortor dignissim convallis.</p>', '1698671262.jpg', 'Selengkapnya', '#', '2023-10-30 02:57:39', '2024-06-17 08:57:01');
 
 -- --------------------------------------------------------
 
@@ -792,15 +805,15 @@ INSERT INTO `sliders` (`id`, `heading`, `text`, `photo`, `button_text`, `button_
 --
 
 CREATE TABLE `specials` (
-  `id` bigint UNSIGNED NOT NULL,
-  `heading` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sub_heading` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `button_text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `button_link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `video_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `heading` varchar(255) NOT NULL,
+  `sub_heading` varchar(255) DEFAULT NULL,
+  `text` text NOT NULL,
+  `button_text` varchar(255) DEFAULT NULL,
+  `button_link` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) NOT NULL,
+  `video_id` varchar(255) DEFAULT NULL,
+  `status` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -810,7 +823,7 @@ CREATE TABLE `specials` (
 --
 
 INSERT INTO `specials` (`id`, `heading`, `sub_heading`, `text`, `button_text`, `button_link`, `photo`, `video_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'What We Do', 'Our Mission', '<p>At our charity, we are committed to making a positive impact in the lives of those in need. We provide vital support in areas such as education, healthcare, disaster relief, and addressing hunger and homelessness. We collaborate with local partners and volunteers to directly help individuals and families.</p>\r\n<p>We also focus on raising awareness about critical social and environmental issues. Our efforts include campaigns, events, and partnerships with like-minded organizations to promote awareness and advocate for change. Join us in making the world a better place through fundraising, volunteering, or simply spreading the word. Together, we can be a force for good and contribute to a more compassionate and equitable society.</p>', 'Read More', '#', '1698728077.jpg', 'TklWRCSM4SA', 'Show', NULL, '2023-12-18 12:19:18');
+(1, 'Apa yang kami lakukan?', 'Misi Kami', '<p>Misi kami adalah meningkatkan kesejahteraan dan kualitas hidup masyarakat desa melalui berbagai program dan inisiatif. Kami fokus pada pemberdayaan komunitas, pendidikan, kesehatan, dan lingkungan. Dengan kolaborasi bersama warga, kami berusaha menciptakan perubahan positif dan berkelanjutan yang dapat dirasakan oleh seluruh desa.</p>\r\n<p>Selain itu, kami juga berkomitmen untuk berkontribusi pada solusi isu-isu sosial di luar desa. Melalui upaya mandiri dan dedikasi penuh, kami bertujuan untuk menghadapi tantangan sosial di tingkat regional dan memberikan dampak yang lebih luas. Kami percaya bahwa upaya kolektif internal dapat membawa perubahan signifikan bagi masyarakat secara keseluruhan.</p>', 'Selengkapnya', '#', '1698728077.jpg', NULL, 'Show', NULL, '2024-07-19 08:33:09');
 
 -- --------------------------------------------------------
 
@@ -819,10 +832,10 @@ INSERT INTO `specials` (`id`, `heading`, `sub_heading`, `text`, `button_text`, `
 --
 
 CREATE TABLE `subscribers` (
-  `id` bigint UNSIGNED NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` tinyint NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -834,8 +847,7 @@ CREATE TABLE `subscribers` (
 INSERT INTO `subscribers` (`id`, `email`, `token`, `status`, `created_at`, `updated_at`) VALUES
 (3, 'subs1@gmail.com', '', 1, '2024-01-02 20:52:40', '2024-01-02 20:52:54'),
 (4, 'subs2@gmail.com', '', 1, '2024-01-02 20:53:20', '2024-01-02 20:53:59'),
-(5, 'subs3@gmail.com', '2e2252979c17c8dfbfea77d1c07c1218', 0, '2024-01-02 20:53:31', '2024-01-02 20:53:31'),
-(6, 'subs4@gmail.com', '', 1, '2024-01-02 20:53:42', '2024-01-02 20:54:09');
+(5, 'subs3@gmail.com', '2e2252979c17c8dfbfea77d1c07c1218', 0, '2024-01-02 20:53:31', '2024-01-02 20:53:31');
 
 -- --------------------------------------------------------
 
@@ -844,11 +856,11 @@ INSERT INTO `subscribers` (`id`, `email`, `token`, `status`, `created_at`, `upda
 --
 
 CREATE TABLE `testimonials` (
-  `id` bigint UNSIGNED NOT NULL,
-  `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `designation` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `comment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `photo` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `designation` varchar(255) NOT NULL,
+  `comment` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -858,8 +870,8 @@ CREATE TABLE `testimonials` (
 --
 
 INSERT INTO `testimonials` (`id`, `photo`, `name`, `designation`, `comment`, `created_at`, `updated_at`) VALUES
-(1, 'testimonial_1702892153.jpg', 'Robert Krol', 'CEO, ABC Company', 'Volunteering with this charity has been a transformative experience. Their unwavering dedication to helping those in need is truly inspiring. I\'m proud to be part of their mission, witnessing the remarkable impact they make. I\'m grateful for the opportunity to contribute to their efforts.', '2023-12-18 03:35:53', '2023-12-18 03:35:53'),
-(2, 'testimonial_1702901976.jpg', 'Patrick Henderson', 'Director, AHN Company', 'As a long-time donor, I\'m consistently impressed by this charity\'s transparency and life-changing impact. They provide real support to those in need, making a meaningful difference in various communities. I\'m proud to be a part of their mission and will continue to support their efforts.', '2023-12-18 03:36:58', '2023-12-18 06:19:36');
+(1, 'testimonial_1702892153.jpg', 'Budiono Siregar', 'Warga', 'Kapal Lawd', '2023-12-18 03:35:53', '2024-06-20 04:22:01'),
+(2, 'testimonial_1702901976.jpg', 'Samsudin', 'Warga', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '2023-12-18 03:36:58', '2024-06-20 04:22:57');
 
 -- --------------------------------------------------------
 
@@ -868,13 +880,13 @@ INSERT INTO `testimonials` (`id`, `photo`, `name`, `designation`, `comment`, `cr
 --
 
 CREATE TABLE `users` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -884,8 +896,16 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `photo`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Smith Robertson', 'smith@gmail.com', '2023-10-30 00:41:37', '$2y$10$bFObENCXsB.lXF/e5davw.AJJ670kDl/jtMDxMHsg.iuSUZMu.Zg2', '1698648372.jpg', NULL, '2023-10-30 00:38:16', '2023-12-28 05:06:08'),
-(2, 'Milton E. Fessler', 'milton@gmail.com', '2023-12-31 20:59:01', '$2y$10$6jlHeeKOKFEqmO14R35KBuVL/zTANQxPKVLQEnPFed5b8K6Ntp5si', NULL, NULL, '2023-12-31 20:58:50', '2023-12-31 20:59:01');
+(1, 'Smithy Werben', 'smith@gmail.com', '2023-10-30 00:41:37', '$2y$10$bFObENCXsB.lXF/e5davw.AJJ670kDl/jtMDxMHsg.iuSUZMu.Zg2', '1698648372.jpg', NULL, '2023-10-30 00:38:16', '2024-07-19 12:23:42'),
+(2, 'Milton E. Fessler', 'milton@gmail.com', '2023-12-31 20:59:01', '$2y$10$6jlHeeKOKFEqmO14R35KBuVL/zTANQxPKVLQEnPFed5b8K6Ntp5si', NULL, NULL, '2023-12-31 20:58:50', '2023-12-31 20:59:01'),
+(3, 'Smithy Werben', 'smith2@gmail.com', '2024-06-05 03:13:34', '$2y$10$0E4/UuAKImzP7tzalrvkzOXMVYKhjSJwkQKhUfufi1xSAkfjPMwmi', NULL, 'UsW2B3I9OZ9H7TeeXcaxgxwWQfuVzyBdSmRj274fBojAeApJ3ZDH5gevyJ4O', '2024-06-05 03:02:10', '2024-06-13 19:09:41'),
+(4, 'Budi', 'budi@gmail.com', '2024-06-05 05:24:56', '$2y$10$7XODFbvN/cOpGZl/LwMC9e4XTO5VCmYQewybjv8G5JLxWtvQkqRtG', NULL, NULL, '2024-06-05 05:24:27', '2024-06-05 05:24:56'),
+(5, 'samsudin alala', 'samsudin@gmail.com', '2024-06-24 05:28:20', '$2y$10$xiz5MD20r4X.ogzOO0b77OHEIgccd.mO6P5O3abOSi1YzOg9LZMqO', NULL, NULL, '2024-06-24 05:27:12', '2024-06-24 05:28:20'),
+(6, 'asd', 'asd@gmail.com', NULL, '$2y$10$nqKUYY5.vmLMXtZ2da3EGOk6JIJsYnAUnisHKKmZ31ZJtiedIHdO6', NULL, NULL, '2024-06-24 05:36:51', '2024-06-24 05:36:51'),
+(7, 'Johan Reza', 'johan@gmail.com', '2024-07-12 06:34:05', '$2y$10$j8JQ0RHdZm.m.9ygHIr8IeejhoBHhzEEaapgN5bqrGGBNpDn8ve5K', NULL, NULL, '2024-07-12 06:33:15', '2024-07-12 06:34:05'),
+(8, 'ilham bagus s', 'ilhambgs45@gmail.com', NULL, '$2y$10$3fWOBBAyNXwpJpDHrTrueOLLqWv3f7Aqab0U.5z7MapxCGVWve4Gq', NULL, NULL, '2024-07-21 07:18:32', '2024-07-21 07:18:32'),
+(9, 'bagus p', 'bagus@gmail.com', '2024-07-21 07:20:18', '$2y$10$UObtCbxzEEzkgD80pk3CSe0SdJbIHEm2we6mwB3S/fNsZ3PvHQzee', NULL, NULL, '2024-07-21 07:19:44', '2024-07-21 07:20:18'),
+(10, 'ananda', 'nanda@gmail.com', '2024-07-23 11:57:14', '$2y$10$dE.muo06rBlqxkDiZyAtCO1LttIfUOxHoRQxngo0wub.MSJ5fOGCC', NULL, NULL, '2024-07-23 11:56:49', '2024-07-23 11:57:14');
 
 -- --------------------------------------------------------
 
@@ -894,9 +914,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ph
 --
 
 CREATE TABLE `videos` (
-  `id` bigint UNSIGNED NOT NULL,
-  `video_category_id` int NOT NULL,
-  `youtube_video_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `video_category_id` int(11) NOT NULL,
+  `youtube_video_id` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -922,8 +942,8 @@ INSERT INTO `videos` (`id`, `video_category_id`, `youtube_video_id`, `created_at
 --
 
 CREATE TABLE `video_categories` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -933,8 +953,8 @@ CREATE TABLE `video_categories` (
 --
 
 INSERT INTO `video_categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Charity Event on University', '2023-12-19 09:27:35', '2023-12-19 09:27:35'),
-(2, 'Charity Event on School', '2023-12-19 09:27:47', '2023-12-19 09:27:47');
+(1, 'Pendidikan dan Pelatihan', '2023-12-19 09:27:35', '2024-06-22 18:11:20'),
+(2, 'Kesehatan dan Kebersihan', '2023-12-19 09:27:47', '2024-06-22 18:11:34');
 
 -- --------------------------------------------------------
 
@@ -943,19 +963,19 @@ INSERT INTO `video_categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `volunteers` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `profession` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `facebook` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `twitter` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tiktok` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `instagram` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `website` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `detail` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `profession` varchar(255) NOT NULL,
+  `photo` varchar(255) NOT NULL,
+  `facebook` varchar(255) DEFAULT NULL,
+  `twitter` varchar(255) DEFAULT NULL,
+  `tiktok` varchar(255) DEFAULT NULL,
+  `instagram` varchar(255) DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `website` varchar(255) DEFAULT NULL,
+  `detail` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -965,10 +985,8 @@ CREATE TABLE `volunteers` (
 --
 
 INSERT INTO `volunteers` (`id`, `name`, `profession`, `photo`, `facebook`, `twitter`, `tiktok`, `instagram`, `address`, `email`, `phone`, `website`, `detail`, `created_at`, `updated_at`) VALUES
-(1, 'Pat Flynn', 'Volunteer', 'volunteer_1702965964.jpg', '#', '#', '#', '#', '932 Pine Tree Lane, Chevy Chase, MD 20815', 'patflynn@gmail.com', '111-222-3333', 'https://www.example.com', 'Passionate about making a difference in the world, Pat Flynn is a dedicated volunteer with a heart for animal welfare and environmental conservation. Born on January 15, 2000, in the vibrant city of Chevy Chase, Pat\'s journey into the world of volunteering began with his love for animals and his desire to protect our planet.\r\n\r\nWith a background in marketing and social media management, Pat has leveraged his skills to amplify the voices of the organizations and causes she cares deeply about. She holds a Bachelor\'s degree in Marketing and has worked as a Marketing Coordinator at XYZ Company, where she honed his expertise in brand promotion.\r\n\r\nDuring 2021-2022, Pat devoted his weekends to volunteer work at a local animal shelter, providing care and support to shelter animals in need. His dedication, empathy, and relentless spirit for animal welfare left a lasting impact on the shelter and the furry friends she cared for.\r\n\r\nPat is fluent in both English and Spanish, making his a versatile communicator with a wide range of potential collaborators. She has also undergone a background check, ensuring that she is a reliable and trustworthy addition to any volunteer team.\r\n\r\nIn addition to his commitment to animals, Pat is a strong advocate for environmental conservation. his motivation to volunteer comes from his belief that every small effort counts in the grand scheme of protecting our environment and its inhabitants.\r\n\r\nWith his own car and a willingness to travel within a 20-mile radius, Pat is ready to embark on his next volunteer adventure. You can connect with Pat through his tiktok profile to learn more about his professional background and achievements.\r\n\r\nPat Smith is not just a volunteer; she\'s a passionate changemaker, driven to create a better world for all living creatures.', '2023-12-19 00:06:04', '2023-12-19 00:40:24'),
-(2, 'David Beckham', 'Volunteer', 'volunteer_1702966730.jpg', '#', '#', '#', '#', '932 Pine Tree Lane, Chevy Chase, MD 20815', 'david@gmail.com', '111-222-3333', NULL, 'Lorem ipsum dolor sit amet, ad vim ludus sapientem hendrerit, reque minimum ex eam. Vix dolorem vocibus adversarium eu, pro no fabulas nusquam. Has nisl paulo ea, sed propriae repudiare ad, eam postea placerat eu. Sit apeirian invenire adolescens no. Dictas aliquip viderer ut ius, ex magna eligendi expetenda mea.\r\n\r\nQuas prompta eruditi in mea, an his omnes suavitate efficiantur. Esse nonumes adversarium vim ex, facete patrioque at mel. In dicit eripuit est, natum invidunt ut est. Mea ea diceret appareat temporibus. Ad nam affert laudem vulputate. Eu decore suscipit qui.\r\n\r\nPersecuti efficiendi mel cu, nonumes maiestatis sit ad. Ne nam soleat fuisset. Pri et odio verterem eloquentiam. Altera consulatu percipitur per cu, et debet oporteat nec. Tantas laboramus est ei, mea aliquid ornatus ne.', '2023-12-19 00:18:50', '2023-12-19 00:40:29'),
-(3, 'Peter Smith', 'Volunteer', 'volunteer_1702966766.jpg', '#', '#', '#', '#', '932 Pine Tree Lane, Chevy Chase, MD 20815', 'peter@gmail.com', '111-222-3333', NULL, 'Impetus docendi phaedrum ut est, errem patrioque vituperata mei ei, vis ad homero invenire. Qui habeo ridens albucius at, quo diam aperiri theophrastus no. Pro prima novum explicari no, sit et case liberavisse. Et ius saepe feugait.\r\n\r\nCum tota eripuit dissentias eu. Eam in amet hendrerit constituam, mazim altera vix ei. Id mel viderer utroque debitis, agam concludaturque eam ad. Cum justo meliore fabellas ei, te pri affert mucius. Est purto debet error an, vel ludus argumentum in.\r\n\r\nIn eos choro erroribus, tota simul pri ei. Quis eros no duo, sit et quod saperet constituam. Ut affert omnium debitis quo, has debet impedit eu. Unum senserit et mel, sea in menandri mandamus. In vim oblique mentitum, mea veri deleniti ei, ex nam probo dicam periculis.', '2023-12-19 00:19:26', '2023-12-19 00:19:26'),
-(4, 'Brent Grundy', 'Volunteer', 'volunteer_1702966803.jpg', '#', '#', '#', '#', '932 Pine Tree Lane, Chevy Chase, MD 20815', 'brent@gmail.com', '111-222-3333', NULL, 'Quo ubique graece tacimates in, viderer voluptatum voluptatibus no has. Constituto interpretaris ut nec, eam te possim postulant. Idque eruditi labores quo id. At lucilius consequat constituam vix. Duo oblique urbanitas et, ex eum affert euismod delicatissimi. Ut cum discere verterem reformidans, eu mea hinc aliquam salutatus.\r\n\r\nQuodsi albucius salutatus cum ea, duo ea option deleniti. Ne eam luptatum neglegentur, ut liber quaestio tractatos pri. Ad his purto recusabo quaestio, ex per agam laboramus, ad mel saperet repudiare. Per idque legere utroque ut, ne ignota eruditi nominavi vis. Te eros porro evertitur nam, id aperiri persius dolorem nec, sed at nostro integre. Recteque voluptatum ad per, possim iuvaret laboramus cu vel.', '2023-12-19 00:20:03', '2023-12-19 00:20:03');
+(1, 'Orang 1', 'Relawan', 'volunteer_1702965964.jpg', '#', '#', '#', '#', 'Dk. Cabean RT 01/01', 'jokoforever@gmail.com', '08123456789', '#', 'Lorem ipsum dolor sit amet, virtute assueverit sadipscing nec ut, pro te bonorum eligendi platonem, ad est quodsi mollis tincidunt. Vix veniam accusata in. Recusabo maiestatis nam ea. Facer legimus epicurei vis in, quidam iudicabit quaerendum vim et, duo aliquid deseruisse cu.\r\n\r\nVide accumsan omnesque vel an. Lucilius sapientem ut eam, cum malis omittantur no. Vix ad duis viris, erroribus definitionem usu et. Partem atomorum platonem ei est, et sea reque dolorem. Quem tempor libris in mea. Essent dolores nam te.\r\n\r\nMel accusam vituperata cotidieque ut, vix esse utinam nusquam in. Ea eam euismod propriae partiendo, ei has perfecto maluisset. Unum euismod mnesarchum an sit. Ne sea vituperata definitiones, his quas facer fastidii eu. Tritani propriae at has, et his altera offendit mediocrem, in erant dolorum nam.', '2023-12-19 00:06:04', '2024-07-19 12:53:20'),
+(2, 'Orang 2', 'Relawan', 'volunteer_1702966730.jpg', '#', '#', NULL, '#', 'Dk. Sungkuran RT 01/01', 'jaliteng@gmail.com', '08123456789', NULL, 'Lorem ipsum dolor sit amet, ad vim ludus sapientem hendrerit, reque minimum ex eam. Vix dolorem vocibus adversarium eu, pro no fabulas nusquam. Has nisl paulo ea, sed propriae repudiare ad, eam postea placerat eu. Sit apeirian invenire adolescens no. Dictas aliquip viderer ut ius, ex magna eligendi expetenda mea.\r\n\r\nQuas prompta eruditi in mea, an his omnes suavitate efficiantur. Esse nonumes adversarium vim ex, facete patrioque at mel. In dicit eripuit est, natum invidunt ut est. Mea ea diceret appareat temporibus. Ad nam affert laudem vulputate. Eu decore suscipit qui.\r\n\r\nPersecuti efficiendi mel cu, nonumes maiestatis sit ad. Ne nam soleat fuisset. Pri et odio verterem eloquentiam. Altera consulatu percipitur per cu, et debet oporteat nec. Tantas laboramus est ei, mea aliquid ornatus ne.', '2023-12-19 00:18:50', '2024-07-19 12:53:26');
 
 --
 -- Indexes for dumped tables
@@ -1192,199 +1210,199 @@ ALTER TABLE `volunteers`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `causes`
 --
 ALTER TABLE `causes`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `cause_donations`
 --
 ALTER TABLE `cause_donations`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `cause_faqs`
 --
 ALTER TABLE `cause_faqs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `cause_photos`
 --
 ALTER TABLE `cause_photos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `cause_videos`
 --
 ALTER TABLE `cause_videos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `counters`
 --
 ALTER TABLE `counters`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `event_photos`
 --
 ALTER TABLE `event_photos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `event_tickets`
 --
 ALTER TABLE `event_tickets`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `event_videos`
 --
 ALTER TABLE `event_videos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `faqs`
 --
 ALTER TABLE `faqs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `features`
 --
 ALTER TABLE `features`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `home_page_items`
 --
 ALTER TABLE `home_page_items`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `other_page_items`
 --
 ALTER TABLE `other_page_items`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `photos`
 --
 ALTER TABLE `photos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `photo_categories`
 --
 ALTER TABLE `photo_categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `post_categories`
 --
 ALTER TABLE `post_categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `replies`
 --
 ALTER TABLE `replies`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sliders`
 --
 ALTER TABLE `sliders`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `specials`
 --
 ALTER TABLE `specials`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `subscribers`
 --
 ALTER TABLE `subscribers`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `testimonials`
 --
 ALTER TABLE `testimonials`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `videos`
 --
 ALTER TABLE `videos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `video_categories`
 --
 ALTER TABLE `video_categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `volunteers`
 --
 ALTER TABLE `volunteers`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
